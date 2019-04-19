@@ -18,7 +18,14 @@ import com.hyjz.hnovel.R;
 import com.hyjz.hnovel.adapter.AcountAdapter;
 import com.hyjz.hnovel.base.BaseActivity;
 import com.hyjz.hnovel.base.BasePresenter;
+import com.hyjz.hnovel.bean.LoginBean;
+import com.hyjz.hnovel.bean.MineBean;
 import com.hyjz.hnovel.bean.UserData;
+import com.hyjz.hnovel.presenter.LoginPresenter;
+import com.hyjz.hnovel.view.CallBackClick;
+import com.hyjz.hnovel.view.LoginView;
+import com.hyjz.hnovel.view.MineView;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -30,15 +37,15 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.Subscriber;
+import butterknife.Bind;
 
-import static com.ykdr.ykdr.ykdr.utils.GsonUtils.fromJson;
-
-public class ShiftAc extends BaseActivity {
+public class ShiftAc extends BaseActivity implements LoginView,MineView {
     //标题
-    private TextView tv_tittle;
+    @Bind(R.id.title)
+    TextView title;
     //返回按钮
-    private ImageView back;
+    @Bind(R.id.back)
+    ImageView back;
     //列表
     private ListView lv_shift;
     private Gson gson;
@@ -48,26 +55,27 @@ public class ShiftAc extends BaseActivity {
     private FileInputStream in;
     private BufferedReader reader;
     private AcountAdapter adapter;
-
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
 
     @Override
-    protected int getLayoutId() {
+    protected int provideContentViewId() {
         return R.layout.activity_shift;
     }
 
     @Override
-    protected void onInitView() throws PackageManager.NameNotFoundException {
+    public void initView() {
         gson = new Gson();
-        tv_tittle = findViewById(R.id.actionbar_title);
-        tv_tittle.setText("切换账户");
-        back = findViewById(R.id.back);
+        title.setText("切换账户");
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        initView();
+        init();
         lv_shift = findViewById(R.id.lv_shift);
         String data = openFile();
         if (!TextUtils.isEmpty(data) && !data.equals("[]")) {
@@ -91,6 +99,7 @@ public class ShiftAc extends BaseActivity {
 //                        edit_acount.setText(writeAcount);
 //                        edit_passwd.setText(writePasswd);
                         login(user.getAcount(), user.getPasswd());
+
                         break;
                     case R.id.tv_add_friend:
                         lists.remove(index);
@@ -106,6 +115,7 @@ public class ShiftAc extends BaseActivity {
         });
         lv_shift.setAdapter(adapter);
     }
+
     private void login(String phone, String password) {
 
         /**
@@ -122,6 +132,7 @@ public class ShiftAc extends BaseActivity {
 
         @SuppressLint("MissingPermission") String deviceId = tm.getDeviceId();
         Log.e("DEVICE_ID ", deviceId + " ");
+
         Http(RetrofitSingleton.getInstance().getApiService().Login(phone, password, deviceId,2).map((str) -> GsonUtils.fromJson(str, LoginBean.class)),
                 new Subscriber<BaseBean<String>>() {
 
@@ -228,7 +239,7 @@ public class ShiftAc extends BaseActivity {
     /**
      * 初始化
      */
-    public void initView() {
+    public void init() {
         gson = new Gson();
         try {
             //以防止没有创建时读取错误
@@ -249,15 +260,6 @@ public class ShiftAc extends BaseActivity {
 //        acount = passwd = writeAcount = writePasswd = "";
     }
 
-    @Override
-    protected BasePresenter createPresenter() {
-        return null;
-    }
-
-    @Override
-    protected int provideContentViewId() {
-        return 0;
-    }
 
     /**
      * 读取文件
@@ -308,7 +310,37 @@ public class ShiftAc extends BaseActivity {
     }
 
     @Override
-    protected void onInitData() {
+    public void success(LoginBean bean) {
+
+    }
+
+    @Override
+    public void error() {
+
+    }
+
+    @Override
+    public void onSuccess(MineBean bean) {
+
+    }
+
+    @Override
+    public void onFailure() {
+
+    }
+
+    @Override
+    public void showLoading(String title) {
+
+    }
+
+    @Override
+    public void stopLoading() {
+
+    }
+
+    @Override
+    public void showErrorTip(String msg) {
 
     }
 }
