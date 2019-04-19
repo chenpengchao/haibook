@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.hyjz.hnovel.MainActivity;
 import com.hyjz.hnovel.R;
 import com.hyjz.hnovel.app.MyApp;
 import com.hyjz.hnovel.base.BaseActivity;
@@ -297,6 +298,7 @@ public class LoginAc extends BaseActivity<LoginPresenter> implements LoginView, 
             MyApp.getInstance().setHeadImg(b.getHeadImg());
         }
         MyApp.getInstance().setToken(b.getSessionId().toString().trim());
+        startActivity(new Intent(mContext, MainActivity.class));
         EventBus.getDefault().post(new MessageEvent("login_success"));
         finish();
     }

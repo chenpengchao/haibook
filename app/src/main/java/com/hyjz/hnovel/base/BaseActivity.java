@@ -75,7 +75,8 @@ public abstract class BaseActivity<T extends BasePresenter>  extends AppCompatAc
         //子类不再需要设置布局ID，也不再需要使用ButterKnife.bind()
         setContentView(provideContentViewId());
         ButterKnife.bind(this);
-            registerEventBus(this);
+        EventBus.getDefault().register(this);
+//            registerEventBus(this);
         initView();
         initData();
         initListener();
@@ -157,7 +158,8 @@ public abstract class BaseActivity<T extends BasePresenter>  extends AppCompatAc
             mRxManager.clear();
         }
         ButterKnife.unbind(this);
-        unregisterEventBus(this);
+//        unregisterEventBus(this);
+        EventBus.getDefault().unregister(this);
 
     }
 

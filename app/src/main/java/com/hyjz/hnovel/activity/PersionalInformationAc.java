@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.hyjz.hnovel.MainActivity;
 import com.hyjz.hnovel.R;
 import com.hyjz.hnovel.base.BaseActivity;
 import com.hyjz.hnovel.base.BasePresenter;
 import com.hyjz.hnovel.bean.MyInfoBean;
 import com.hyjz.hnovel.presenter.PersionInfoPresenter;
+import com.hyjz.hnovel.utils.SharedPreferencesHelper;
+import com.hyjz.hnovel.utils.ToastUtil;
 import com.hyjz.hnovel.view.PersionInfoView;
 
 import butterknife.Bind;
@@ -39,6 +42,9 @@ public class PersionalInformationAc extends BaseActivity<PersionInfoPresenter> i
     //切换账户
     @Bind(R.id.tv_qiehuan)
     TextView tv_qiehuan;
+    //退出账户
+    @Bind(R.id.tv_quit)
+    TextView tv_quit;
     @Override
     public void initView() {
         mPresenter.getInfo();
@@ -113,12 +119,21 @@ public class PersionalInformationAc extends BaseActivity<PersionInfoPresenter> i
 
     }
     //点击事件
-    @OnClick({R.id.tv_qiehuan})
+    @OnClick({R.id.tv_qiehuan,R.id.tv_quit})
     public void onclick(View v) {
         switch (v.getId()) {
             case R.id.tv_qiehuan:
                 Intent intent1 = new Intent(mContext, ShiftAc.class);
                 startActivity(intent1);
+                finish();
+                break;
+                //退出账户
+            case R.id.tv_quit:
+                SharedPreferencesHelper.remove("token");
+                ToastUtil.showShort(mContext,"退出成功");
+                Intent intent = new Intent(mContext, LoginAc.class);
+                startActivity(intent);
+                MainActivity.instance.finish();
                 finish();
                 break;
         }

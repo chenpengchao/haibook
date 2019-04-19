@@ -1,7 +1,9 @@
 package com.hyjz.hnovel.bean;
 
+import org.greenrobot.eventbus.Subscribe;
+
 public class MessageEvent {
-        private String message;
+        public String message;
         public  MessageEvent(String message){
             this.message=message;
         }

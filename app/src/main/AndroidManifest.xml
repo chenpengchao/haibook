@@ -72,6 +72,7 @@
         <activity android:name=".activity.ReaderRankingAc" />
         <activity android:name=".activity.GoldTOBookCoinAc" />
         <activity android:name=".activity.GoldToMoneyAc"></activity>
+        <activity android:name=".activity.ShiftAc" />
     </application>
 
 </manifest>

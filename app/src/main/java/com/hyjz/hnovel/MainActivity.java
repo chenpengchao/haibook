@@ -64,6 +64,7 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements LoginV
     private MineFm mineFm;
     private static int tabLayoutHeight;
     Bundle savedInstance = null;
+    public static MainActivity instance;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void message(MessageEvent event) {
@@ -120,6 +121,7 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements LoginV
         ChangeModeController.getInstance().init(this,R.attr.class);
         super.onCreate(savedInstanceState);
         savedInstance = savedInstanceState;
+        instance = this;
         //初始化frament
         if (MyApp.getInstance().getPhoneNum() != null && MyApp.getInstance().getPwd() != null) {
             SharedPreferencesHelper.remove("token");

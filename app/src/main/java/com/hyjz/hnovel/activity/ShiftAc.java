@@ -233,7 +233,7 @@ public class ShiftAc extends BaseActivity<LoginPresenter> implements LoginView {
             MyApp.getInstance().setHeadImg(bean.getHeadImg());
         }
         MyApp.getInstance().setToken(bean.getSessionId().toString().trim());
-        EventBus.getDefault().post(new MessageEvent("refreshMinefm"));
+        EventBus.getDefault().post(new MessageEvent("refresh_fm_mine"));
         finish();
     }
 
