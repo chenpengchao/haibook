@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RechargeCodeAc">
+    <!--充值vip-->
+    <include layout="@layout/title_layout" />
+
+    <com.chaychan.uikit.refreshlayout.BGARefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <!--<FrameLayout-->
+        <!--android:id="@+id/fl_content"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--&gt;-->
+
+        <com.chaychan.uikit.powerfulrecyclerview.PowerfulRecyclerView
+            android:id="@+id/rv_recharge_code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:dividerMarginLeft="10dp"
+            app:dividerMarginRight="10dp"
+            app:dividerColor="@color/color_d8d8d8"
+            app:dividerSize="0.5dp"
+            />
+
+        <!--</FrameLayout>-->
+
+    </com.chaychan.uikit.refreshlayout.BGARefreshLayout>
+</LinearLayout>

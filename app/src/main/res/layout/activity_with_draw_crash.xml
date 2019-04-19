@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.WithDrawCrashAc">
+
+    <include layout="@layout/title_layout" />
+    <!--提现功能相关-->
+    <LinearLayout
+        android:id="@+id/ll_withdraw_crash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <!--提现记录-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:id="@+id/ll_withdraw_crash_record"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/withdrawal_record" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="提现记录"
+                android:textColor="#6E6E6E"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+        <!--已提现的金额-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:gravity="center"
+                android:text="111111.11元"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:text="已提现总奖励"
+                android:textColor="#6E6E6E"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+        <!--可提现余额-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="111111.11元"
+                android:textColor="#F54337"
+                android:textSize="30sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:text="已提现总奖励"
+                android:textColor="#6E6E6E"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+        <!--提现按钮-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="35dp"
+            android:id="@+id/ac_with_draw_crash_ll"
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="196dp"
+            android:textColor="@color/white"
+            android:text="提现"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:background="@drawable/six_circle_red"
+            android:layout_height="46dp" />
+        </LinearLayout>
+        <!--我的嗨军团-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="29dp"
+            android:text="我的嗨军团"
+            android:textColor="#1F1F1F"
+            android:layout_marginLeft="16dp"
+            android:textSize="13sp"
+            android:layout_marginBottom="11dp"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+    <!--两个可以滑动的viewpage-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="0dp"
+            app:tabTextColor="#878787"
+            app:tabSelectedTextColor="@color/main_color"
+            app:tabIndicatorColor="@color/main_color"
+            app:tabTextAppearance="@style/TabLayoutTextStyle"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </android.support.design.widget.TabLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="#e0e0e0"
+        android:layout_height="1px" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+    </android.support.v4.view.ViewPager>
+
+
+</LinearLayout>

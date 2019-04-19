@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.FeedBackAc">
+    <!--android:background="@color/white"-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/main_color"
+        android:gravity="center_vertical"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+        <!--app:title="@string/tab_hai_bookshelf"-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@color/main_color"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="意见反馈"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+            <!--<android.support.design.widget.TabLayout-->
+            <!--android:id="@+id/tabs"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:tabBackground="@color/main_color"-->
+            <!--app:tabIndicatorColor="@color/white"-->
+            <!--android:layout_weight="1">-->
+            <!--</android.support.design.widget.TabLayout>-->
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:maxHeight="?attr/actionBarSize"
+                android:src="@mipmap/btn_returnwhite" />
+            <!--android:padding="@dimen/item_margin"-->
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="264dp"
+                    android:id="@+id/ac_feed_et_advice"
+                    android:background="@null"
+                    android:gravity="top|left"
+                    android:hint="感谢您留下宝贵的建议，请输入具体详情。"
+                    android:padding="10dp"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <!--提交微信-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:src="@mipmap/write_weixin" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:background="@null"
+                    android:id="@+id/ac_feed_et_wechat"
+                    android:hint="请输入您的微信号"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+            <!--提交电话号码-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:src="@mipmap/write_telephone" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:background="@null"
+                    android:id="@+id/ac_feed_et_phoneNum"
+                    android:hint="请输入您的手机号"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+            <!--完成按钮-->
+            <TextView
+                android:layout_width="130dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="35dp"
+                android:text="提交"
+                android:id="@+id/ac_feed_tv_submit"
+                android:textSize="17sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@drawable/bg_btn_red_freedback"
+                android:layout_height="44dp" />
+        </LinearLayout>
+        <com.hyjz.hnovel.weight.LoadingTip
+            android:id="@+id/ac_feed_lt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ntb"
+            android:layout_gravity="center"
+            android:gravity="center" >
+
+        </com.hyjz.hnovel.weight.LoadingTip>
+    </FrameLayout>
+
+
+</LinearLayout>

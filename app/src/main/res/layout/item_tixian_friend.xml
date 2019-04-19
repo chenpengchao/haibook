@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#1F1F1F"
+            android:text="追风的小少年"
+            android:maxLength="45"
+            android:includeFontPadding="false"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="21dp"
+            android:src="@mipmap/book_friend" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="14dp"
+            android:background="@mipmap/earn_level"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="7dp"
+                android:text="嗨赚Lv32"
+                android:textColor="@color/white"
+                android:textSize="9sp" />
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="56dp"
+            android:textColor="#00A1FF"
+            android:text="联系TA"
+            android:textSize="11sp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/circle_twelvel_blue"
+            android:gravity="center"
+            android:layout_height="23dp" />
+    </LinearLayout>
+    <!--加入时间和赚钱数-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingBottom="16dp"
+        android:layout_height="wrap_content">
+        <!--时间-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_marginLeft="16dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="扫码时间"
+                android:textSize="10sp"
+                android:layout_marginTop="16dp"
+                android:textColor="#6E6E6E"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="加入时间"
+                android:layout_marginTop="8dp"
+                android:textSize="10sp"
+                android:textColor="#6E6E6E"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <!--金额-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="+56328"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                android:textColor="#F54337"
+                android:includeFontPadding="false"
+                android:layout_marginRight="16dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="56个嗨友"
+                android:layout_marginTop="9dp"
+                android:textSize="10sp"
+                android:textColor="#6E6E6E"
+                android:layout_marginRight="16dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

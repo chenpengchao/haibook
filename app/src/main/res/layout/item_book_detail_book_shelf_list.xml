@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="88dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:background="@drawable/touch_bg">
+
+    <ImageView
+        android:id="@+id/ivBookListCover"
+        android:layout_width="54dp"
+        android:layout_height="72dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/cover_default" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="14dp"
+       >
+
+        <LinearLayout
+            android:id="@+id/ll_book_name"
+            android:layout_width="match_parent"
+            android:baselineAligned="true"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvBookListTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="此单在手，书荒不再有！"
+                android:textColor="@color/common_h1"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_is_lianzai_or_over"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="连载中"
+                android:textSize="10sp"
+                android:textColor="@color/corlor_lianzai" />
+        </LinearLayout>
+
+        <!--作者以及阅读进度-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/ll_anthor_and_jindu"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="4dp"
+            android:layout_below="@+id/ll_book_name"
+            android:layout_height="wrap_content">
+            <!--作者-->
+            <TextView
+                android:id="@+id/tvBookAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="选择"
+                android:textColor="@color/common_h2"
+                android:textSize="12sp" />
+            <!--阅读进度-->
+            <TextView
+                android:id="@+id/tv_read_jindu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_marginLeft="15dp"
+                android:singleLine="true"
+                android:text="选择"
+                android:textColor="#FF0E0A0D"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!--更新时间以及更新内容-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/ll_update_time_and_paragraph"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="3dp"
+            android:layout_below="@+id/ll_anthor_and_jindu"
+            android:layout_height="wrap_content">
+            <!--作者-->
+            <TextView
+                android:id="@+id/tv_update_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="选择"
+                android:textColor="#FF8F8F8F"
+                android:textSize="12sp" />
+            <!--阅读进度-->
+            <TextView
+                android:id="@+id/tv_update_paragraph"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_marginLeft="15dp"
+                android:singleLine="true"
+                android:text="选择"
+                android:textColor="#FF8F8F8F"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AboutHNovelAc">
+
+    <include layout="@layout/title_layout" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:src="@mipmap/about_hinovel"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="16sp"
+        android:text="嗨小说"
+        android:gravity="center_horizontal"
+        android:textColor="#363636"
+        android:layout_marginTop="14dp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="12sp"
+        android:text="verson 1.0"
+        android:gravity="center_horizontal"
+        android:textColor="#89898C"
+        android:layout_marginTop="11dp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:text="      嗨小说是一款专注小说阅读的追新更神器。百万级书库光速追更，全程畅读无广告干扰。多维推荐好书直达， 互动社区属性高能，集书评、交友、吐槽为一体，趣味享不停。更有实时更新提醒功能，限时减免重磅福利，拥有舒适的阅读体验， 随时随地好书相随。
+
+追书神器app项目启动于2012年，是新快全的小说导读助手。
+
+追书聚合了各大平台上火的连载小说；开放具特色的社区功能，为用户交流提供便捷平台； 凭借综合测评为每本小说提供数据分析和全网排名。截至2016年底，追书神器的总用户数已达9000万，日活跃用户超过900万。"
+      android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.BeVipAc">
+    <!--充值vip-->
+    <include layout="@layout/title_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+                <!--头像和姓名相关-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="29dp"
+                            android:includeFontPadding="false"
+                            android:text="追风的少年"
+                            android:textColor="#000000"
+                            android:textSize="22sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="13dp"
+                            android:text="您还不是嗨读VIP，开通可获以下特权" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <com.hyjz.hnovel.weight.CircleImageView
+                        android:layout_width="37dp"
+                        android:layout_height="37dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginRight="20dp" />
+
+                </LinearLayout>
+                <!--四个功能键-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+                    <!--我的书架-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/hibook_freeread" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="18dp"
+                            android:text="海量嗨书免费读"
+                            android:textColor="#595656"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+                    <!--阅读记录-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/coin_discount" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="18dp"
+                            android:text="书币8折购"
+                            android:textColor="#595656"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+                    <!--邀请好友-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/honorable_label" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="18dp"
+                            android:text="享尊贵标识"
+                            android:textColor="#595656"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+                    <!--我的钱包-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/please_wait" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="18dp"
+                            android:text="敬请期待"
+                            android:textColor="#595656"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <!--充值金额-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="23dp"
+                        android:includeFontPadding="false"
+                        android:text="会员套餐"
+                        android:textColor="#000000"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="23dp"
+                        android:layout_marginRight="19dp"
+                        android:includeFontPadding="false"
+                        android:id="@+id/tv_recharge_code"
+                        android:text="充值记录"
+                        android:textColor="#545454"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+                <!--充值金额1-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <!--一个月-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="19dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="9dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/circle_eight_red"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginTop="18dp"
+                            android:includeFontPadding="false"
+                            android:text="xx.xx"
+                            android:textColor="#F54337"
+                            android:textSize="25sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="14dp"
+                            android:includeFontPadding="false"
+                            android:text="1个月"
+                            android:textColor="#343434"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+                    <!--三个月-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="19dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="9dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/circle_eight_red"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginTop="18dp"
+                            android:includeFontPadding="false"
+                            android:text="xx.xx"
+                            android:textColor="#F54337"
+                            android:textSize="25sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="14dp"
+                            android:includeFontPadding="false"
+                            android:text="1个月"
+                            android:textColor="#343434"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--充值金额2-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <!--一个月-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="19dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="9dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/circle_eight_red"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginTop="18dp"
+                            android:includeFontPadding="false"
+                            android:text="xx.xx"
+                            android:textColor="#F54337"
+                            android:textSize="25sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="14dp"
+                            android:includeFontPadding="false"
+                            android:text="1个月"
+                            android:textColor="#343434"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+                    <!--三个月-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="19dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="9dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/circle_eight_red"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginTop="18dp"
+                            android:includeFontPadding="false"
+                            android:text="xx.xx"
+                            android:textColor="#F54337"
+                            android:textSize="25sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="14dp"
+                            android:includeFontPadding="false"
+                            android:text="1个月"
+                            android:textColor="#343434"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <!--支付宝或者微信充值-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:orientation="horizontal">
+                <!--微信支付-->
+                <LinearLayout
+                    android:layout_width="90dp"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/circle_eight_grey"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_wechat" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="微信" />
+
+
+                </LinearLayout>
+
+                <!--支付宝支付-->
+                <LinearLayout
+                    android:layout_width="90dp"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/circle_eight_grey"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_alipay" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="微信" />
+
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="86dp"
+                    android:text="立即开通"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="19dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/circle_six_red"
+                    android:layout_height="42dp" />
+            </LinearLayout>
+            <!--充值说明-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="充值说明"
+                    android:textSize="15sp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:textColor="#000000"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="1.充值遇到任何问题，均可联系客服获得帮助。请关注微信公众号【嗨星球】。
+2.部分书籍因版权限制，不支持VIP免费阅读。
+3.包月服务不支持退款，敬请谅解。"
+                    android:textColor="#595656"
+                    android:textSize="13sp"
+                    android:paddingRight="16dp"
+                    android:paddingLeft="16dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="49dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

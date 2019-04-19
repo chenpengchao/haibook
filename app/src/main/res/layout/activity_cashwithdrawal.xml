@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.CashwithdrawalAc">
+    <!--提现-->
+    <include layout="@layout/title_layout" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <!--当前余额-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="18dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="当前余额:"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="18sp"
+                        android:text="1111"
+                        android:id="@+id/ac_cashwithdraw_remainder"
+                        android:includeFontPadding="false"
+                        android:layout_marginLeft="3dp"
+                        android:textColor="#F54337"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <!--兑换框-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="自定义兑换"
+                    android:textSize="12sp"
+
+                    android:paddingLeft="19dp"
+                    android:layout_marginTop="35dp"
+                    android:includeFontPadding="false"
+                    android:textColor="#828282"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:id="@+id/ac_cashwithdraw_et"
+                    android:textSize="24sp"
+                    android:hint="请输入兑换金额"
+                    android:background="@drawable/circle_stroke_eight_red"
+                    android:layout_marginRight="19dp"
+                    android:layout_height="62dp" />
+                <!--确认兑换-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginTop="30dp"
+                    android:text="确认提现"
+                    android:id="@+id/ac_cashwithdraw_tv_confirm"
+                    android:textSize="18sp"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:background="@drawable/six_circle_red"
+                    android:layout_marginRight="19dp"
+                    android:layout_height="40dp" />
+                <!--确认兑换-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginTop="30dp"
+                    android:text="设置支付宝提现账号"
+                    android:textSize="18sp"
+                    android:id="@+id/ac_cashwithdraw_tv_setalipay"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:background="@drawable/six_circle_red"
+                    android:layout_marginRight="19dp"
+                    android:layout_height="40dp" />
+                <!--温馨提示-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="温馨提示"
+                    android:textSize="15sp"
+                    android:paddingLeft="19dp"
+                    android:layout_marginTop="35dp"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="1.提现申请将在1个工作日内完成审核，请耐心等待（双休日及法定节假日除外）。
+2.提现到账查询：支付宝-我的-钱包。如有问题，可关注公众号【嗨星球】咨询。
+3.提现周期为一个自然年，每年的1月1日00:00将清空未提现的余额，请在年底前完成提现。
+4.申请提交后，工作人员会对申请进行审核，若确认用户是以刷单的方式来获取余额，则会归入非常规用户一列，并会对其账号进行冻结操作。"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+        </ScrollView>
+
+        <com.hyjz.hnovel.weight.LoadingTip
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+        </com.hyjz.hnovel.weight.LoadingTip>
+    </FrameLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <!--通知的图标-->
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@mipmap/systemnotice"
+                android:layout_marginTop="21dp"
+                android:layout_marginLeft="15dp"
+                android:layout_height="wrap_content" />
+
+        <!--通知的内容和类型-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <!--通知的类型和时间-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="嗨友充值通知"
+                    android:textSize="16sp"
+                    android:textColor="#212121"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="match_parent"
+                   android:gravity="right"
+                    android:layout_marginTop="13dp"
+                    android:textColor="#888888"
+                    android:textSize="12sp"
+                    android:text="12:30"
+                    android:paddingRight="13dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <!--通知的内容-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="9dp"
+                android:textSize="13sp"
+                android:textColor="#808080"
+                android:layout_marginRight="22dp"
+                android:text="您的嗨友“XXXXXXXX”充值了6个月嗨读VIP，您获得XXXX元返利。"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

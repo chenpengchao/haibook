@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.BookTicketAc">
+    <!--书券-->
+    <include layout="@layout/title_layout" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ticket_bg"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <!--书币-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="32dp"
+                            android:text="书币账户余额"
+                            android:textColor="#DBDBDB"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="10dp"
+                                android:includeFontPadding="false"
+                                android:text="23456"
+                                android:textColor="#FFFFFF"
+                                android:textSize="28sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginBottom="4dp"
+                                android:text="书币"
+                                android:textColor="#DBDBDB"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/iv_add"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="65dp"
+                        />
+                    <!--书券账户余额-->
+                    <!--书币-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="32dp"
+                            android:text="书券账户余额"
+                            android:textColor="#DBDBDB"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="20dp"
+                                android:includeFontPadding="false"
+                                android:text="23456"
+                                android:textColor="#FFFFFF"
+                                android:textSize="19sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginBottom="2dp"
+                                android:text="书券(赠送)"
+                                android:textColor="#DBDBDB"
+                                android:textSize="12sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_gravity="bottom"
+                                android:layout_marginLeft="5dp"
+                                android:gravity="center_vertical"
+                                android:layout_marginBottom="5dp"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:text="有效期"
+                                    android:textColor="#FFC74E"
+                                    android:textSize="10sp"
+                                    android:layout_height="wrap_content" />
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:src="@mipmap/iv_next"
+                                    android:layout_marginLeft="2dp"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="阅读时优先扣除书券"
+                    android:textColor="#FFC74E"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="23dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <!--充值按钮-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/ac_ticket_book_ll_recharge"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="充值"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/circle_three_red"
+                    android:layout_height="41dp" />
+                
+            </LinearLayout>
+            <!--充值记录和消费记录-->
+            <View
+                android:layout_width="match_parent"
+                android:background="#EBE5E1"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_height="1dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+
+                android:layout_height="56dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:text="充值记录"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="17dp"
+                    android:textColor="#161616"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="13dp"
+                    android:src="@mipmap/iv_book_ticket_next"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:background="#EBE5E1"
+                android:layout_marginLeft="16dp"
+                android:layout_height="1dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_height="56dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:text="消费记录"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="17dp"
+                    android:textColor="#161616"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@mipmap/iv_book_ticket_next"
+                    android:layout_marginRight="13dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:background="#EBE5E1"
+                android:layout_marginLeft="16dp"
+                android:layout_height="1dp" />
+        </LinearLayout>
+
+        <com.hyjz.hnovel.weight.LoadingTip
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.hyjz.hnovel.weight.LoadingTip>
+    </FrameLayout>
+
+</LinearLayout>
