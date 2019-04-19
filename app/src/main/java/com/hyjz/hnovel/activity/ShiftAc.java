@@ -16,15 +16,19 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hyjz.hnovel.R;
 import com.hyjz.hnovel.adapter.AcountAdapter;
+import com.hyjz.hnovel.app.MyApp;
 import com.hyjz.hnovel.base.BaseActivity;
 import com.hyjz.hnovel.base.BasePresenter;
 import com.hyjz.hnovel.bean.LoginBean;
+import com.hyjz.hnovel.bean.MessageEvent;
 import com.hyjz.hnovel.bean.MineBean;
 import com.hyjz.hnovel.bean.UserData;
 import com.hyjz.hnovel.presenter.LoginPresenter;
 import com.hyjz.hnovel.view.CallBackClick;
 import com.hyjz.hnovel.view.LoginView;
 import com.hyjz.hnovel.view.MineView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -39,7 +43,7 @@ import java.util.List;
 
 import butterknife.Bind;
 
-public class ShiftAc extends BaseActivity implements LoginView,MineView {
+public class ShiftAc extends BaseActivity<LoginPresenter> implements LoginView {
     //标题
     @Bind(R.id.title)
     TextView title;
@@ -55,9 +59,10 @@ public class ShiftAc extends BaseActivity implements LoginView,MineView {
     private FileInputStream in;
     private BufferedReader reader;
     private AcountAdapter adapter;
+    UserData user = null;
     @Override
-    protected BasePresenter createPresenter() {
-        return null;
+    protected LoginPresenter createPresenter() {
+        return new LoginPresenter(this);
     }
 
     @Override
@@ -98,7 +103,8 @@ public class ShiftAc extends BaseActivity implements LoginView,MineView {
 //                        writePasswd = user.getPasswd();
 //                        edit_acount.setText(writeAcount);
 //                        edit_passwd.setText(writePasswd);
-                        login(user.getAcount(), user.getPasswd());
+                        mPresenter.login(user.getAcount(), user.getPasswd());
+//                        login(user.getAcount(), user.getPasswd());
 
                         break;
                     case R.id.tv_add_friend:
@@ -114,76 +120,6 @@ public class ShiftAc extends BaseActivity implements LoginView,MineView {
             }
         });
         lv_shift.setAdapter(adapter);
-    }
-
-    private void login(String phone, String password) {
-
-        /**
-         * {
-         "success": true,
-         "errorMsg": null,
-         "errorCode": null,
-         "access_token": "4a2f97b0-0b07-4df9-a993-493934ea9f90",
-         "expire_time": 7200
-         }
-         */
-        TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
-//        @SuppressLint("MissingPermission")
-
-        @SuppressLint("MissingPermission") String deviceId = tm.getDeviceId();
-        Log.e("DEVICE_ID ", deviceId + " ");
-
-        Http(RetrofitSingleton.getInstance().getApiService().Login(phone, password, deviceId,2).map((str) -> GsonUtils.fromJson(str, LoginBean.class)),
-                new Subscriber<BaseBean<String>>() {
-
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(BaseBean<String> b) {
-                        if (b.isSuccess() == true) {
-                            if (b.getIs_black() == 2) {
-                                ToastUtil.showShort(mContext, b.getErrorMsg() + "");
-                                return;
-                            }
-                            ToastUtil.showShort(mContext, "登录成功");
-//                            stogeUser(b.getHeadImg());
-//                            ToastUtil.showShort(mContext,b.getErrorMsg());
-//                            SharedPreferencesHelper.remove("token");
-                            stogeUser(b.getHeadImg(), phone, password);
-                            MyApp.getInstance().setNickName(b.getNickName());
-                            MyApp.getInstance().setAgentId(b.getId());
-                            MyApp.getInstance().setHeadImage1(b.getHeadImg());
-                            MyApp.getInstance().setHeadImageshift(b.getHeadImg());
-                            MyApp.getInstance().setRongToken(b.getRcloudToken());
-                            MyApp.getInstance().setIsAdmin(b.getIs_admin());
-                            MyApp.getInstance().setIsBlack(b.getIs_black());
-                            if (b.getIs_vip() != null) {
-                                MyApp.getInstance().setIsVip(b.getIs_vip());
-                            }
-
-                            MyApp.getInstance().setToken(b.getAccess_token().toString().trim());
-//                MyApp.getInstance().setToken("24a54cde-03c0-4545-9656-434a533abfa5");
-
-                            MyApp.getInstance().setUserName(phone);
-                            MyApp.getInstance().setPassWord(password);
-                            getMineParam();
-                            MainActivity.instance.finish();
-                            startActivity(new Intent(mContext, MainActivity.class));
-                            EventBus.getDefault().post("refreshMinefm","refreshMinefm");
-                            finish();
-
-                        }
-
-                    }
-                });
     }
     /**
      * 进行密码的存储
@@ -211,29 +147,6 @@ public class ShiftAc extends BaseActivity implements LoginView,MineView {
                 }
             }
         }
-    }
-
-    private void getMineParam() {
-        Http(RetrofitSingleton.getInstance().getApiService().MineParam(MyApp.getInstance().getToken()).map((str) -> fromJson(str, MineBean.class)),
-                new Subscriber<BaseBean<MineBean>>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(BaseBean<MineBean> b) {
-                        if (b.isSuccess() == true) {
-                            MineBean bean = b.getResult();
-                            MyApp.getInstance().setUser(bean);
-                        }
-                    }
-                });
     }
 
     /**
@@ -311,21 +224,21 @@ public class ShiftAc extends BaseActivity implements LoginView,MineView {
 
     @Override
     public void success(LoginBean bean) {
-
+        stogeUser(bean.getHeadImg(), user.getAcount(), user.getPasswd());
+        MyApp.getInstance().setPwd(user.getPasswd());
+        MyApp.getInstance().setPhoneNum(user.getAcount());
+        MyApp.getInstance().setNickName(bean.getNickName());
+        MyApp.getInstance().setUserId(bean.getUserId());
+        if (bean.getHeadImg() != null) {
+            MyApp.getInstance().setHeadImg(bean.getHeadImg());
+        }
+        MyApp.getInstance().setToken(bean.getSessionId().toString().trim());
+        EventBus.getDefault().post(new MessageEvent("refreshMinefm"));
+        finish();
     }
 
     @Override
     public void error() {
-
-    }
-
-    @Override
-    public void onSuccess(MineBean bean) {
-
-    }
-
-    @Override
-    public void onFailure() {
 
     }
 
