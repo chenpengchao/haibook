@@ -84,5 +84,12 @@ public interface ApiService {
             @Query("pageNum") Integer pageNum,
             @Query("pageSize") Integer pageSize
     );
+    /**
+     * 点击充值，进入书券界面请求接口/api/user/mybookcoin
+     */
+    @POST("/api/user/mybookcoin")
+    Observable<String> myBookTicket(
+            @Query("access_token") String sessionId
+    );
 }
 
