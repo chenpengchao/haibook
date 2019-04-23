@@ -89,5 +89,7 @@ dependencies {
     implementation 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar'
     //快速开发框架
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    //上下拉刷新
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
 
 }

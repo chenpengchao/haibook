@@ -54,6 +54,7 @@
                                 android:layout_marginTop="10dp"
                                 android:includeFontPadding="false"
                                 android:text="23456"
+                                android:id="@+id/tv_book_coin"
                                 android:textColor="#FFFFFF"
                                 android:textSize="28sp" />
 
@@ -91,6 +92,7 @@
                             android:layout_marginTop="32dp"
                             android:text="书券账户余额"
                             android:textColor="#DBDBDB"
+
                             android:textSize="12sp" />
 
                         <LinearLayout
@@ -105,6 +107,7 @@
                                 android:layout_marginTop="20dp"
                                 android:includeFontPadding="false"
                                 android:text="23456"
+                                android:id="@+id/tv_book_ticket"
                                 android:textColor="#FFFFFF"
                                 android:textSize="19sp" />
 
@@ -121,6 +124,7 @@
                                 android:layout_width="wrap_content"
                                 android:orientation="horizontal"
                                 android:layout_gravity="bottom"
+                                android:id="@+id/ll_book_ticket_vid"
                                 android:layout_marginLeft="5dp"
                                 android:gravity="center_vertical"
                                 android:layout_marginBottom="5dp"
