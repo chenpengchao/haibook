@@ -35,6 +35,7 @@ public class BookTicketVidAc extends BaseActivity<BookTicketVidPresenter> implem
                 finish();
             }
         });
+        mPresenter.getBookTicketVidList(1);
     }
 
     @Override
@@ -62,4 +63,8 @@ public class BookTicketVidAc extends BaseActivity<BookTicketVidPresenter> implem
 
     }
 
+    @Override
+    public void onBookTicketVidSuccess() {
+
+    }
 }

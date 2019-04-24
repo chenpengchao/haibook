@@ -91,5 +91,14 @@ public interface ApiService {
     Observable<String> myBookTicket(
             @Query("access_token") String sessionId
     );
+    /**
+     * 书券有效期接口/api/user/coupons/list/valid
+     */
+    @POST("/api/user/coupons/list/valid")
+    Observable<String> myBookTicketVid(
+            @Query("access_token") String sessionId,
+            @Query("pageNum") Integer pageNum,
+            @Query("pageSize") Integer pageSize
+    );
 }
 
