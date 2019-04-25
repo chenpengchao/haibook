@@ -16,7 +16,7 @@ public class BookTicketVidPresenter extends BasePresenter<BookTicketVidView> {
     }
     public void getBookTicketVidList(Integer num) {
         addSubscription(mApiService.myBookTicketVid(MyApp.getInstance().getToken(),num,10)
-                .map((str) -> GsonUtils.fromJson(str, MyBookTicketBean.class)), new Subscriber<BaseBean<MyBookTicketVidListBean>>() {
+                .map((str) -> GsonUtils.fromJson(str, MyBookTicketVidListBean.class)), new Subscriber<BaseBean<MyBookTicketVidListBean>>() {
             @Override
             public void onCompleted() {
 
@@ -30,7 +30,7 @@ public class BookTicketVidPresenter extends BasePresenter<BookTicketVidView> {
             @Override
             public void onNext(BaseBean<MyBookTicketVidListBean> b) {
                 if (b.getResult() != null) {
-                    mView.onBookTicketVidSuccess();
+                    mView.onBookTicketVidSuccess(b.getResult());
                 }
 
             }
