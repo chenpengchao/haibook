@@ -1,4 +1,5 @@
 package com.hyjz.hnovel.api;
+
 import com.hyjz.hnovel.bean.BookRecommend;
 
 import retrofit2.http.Field;
@@ -34,6 +35,7 @@ public interface ApiService {
             @Query("nickName") String nickName,
             @Query("code") String code
     );
+
     /**
      * 登录接口/api/user/readerlogin
      */
@@ -42,6 +44,7 @@ public interface ApiService {
             @Query("phoneNum") String phoneNum,
             @Query("password") String password
     );
+
     /**
      * 我的界面信息/api/user/reader-center
      */
@@ -49,14 +52,15 @@ public interface ApiService {
     Observable<String> minecenter(
             @Query("access_token") String sessionId
     );
+
     /**
      * 获取个人信息接口/api/user/info
-     *
      */
     @POST("/api/user/info")
     Observable<String> getPersioninfo(
             @Query("access_token") String sessionId
     );
+
     /**
      * 意见反馈/api/advice/add
      */
@@ -67,6 +71,7 @@ public interface ApiService {
             @Query("wxAccount") String wxAccount,
             @Query("phoneNum") String phoneNum
     );
+
     /**
      * 充值书币/api/recharge/info/bookcoin
      */
@@ -84,6 +89,7 @@ public interface ApiService {
             @Query("pageNum") Integer pageNum,
             @Query("pageSize") Integer pageSize
     );
+
     /**
      * 点击充值，进入书券界面请求接口/api/user/mybookcoin
      */
@@ -91,6 +97,7 @@ public interface ApiService {
     Observable<String> myBookTicket(
             @Query("access_token") String sessionId
     );
+
     /**
      * 书券有效期接口/api/user/coupons/list/valid
      */
@@ -99,6 +106,18 @@ public interface ApiService {
             @Query("access_token") String sessionId,
             @Query("pageNum") Integer pageNum,
             @Query("pageSize") Integer pageSize
+    );
+
+    /**
+     * 书币充值记录/pay/bill/list/bookcoin
+     */
+    @POST("/api/pay/bill/list/bookcoin")
+    Observable<String> myBookTicketRechargeList(
+            @Query("access_token") String sessionId,
+            @Query("pageNum") Integer pageNum,
+            @Query("pageSize") Integer pageSize,
+            @Query("year") Integer year,
+            @Query("month") Integer month
     );
 }
 

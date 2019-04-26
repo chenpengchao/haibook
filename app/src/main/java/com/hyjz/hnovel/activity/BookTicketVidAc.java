@@ -40,17 +40,19 @@ public class BookTicketVidAc extends BaseActivity<BookTicketVidPresenter> implem
     ImageView back;
     //adapter
     BookTicketVidAdapter mAdapter;
-    @Bind(R.id.swipeLayout)
-    SwipeRefreshLayout mSwipeRefreshLayout;
+    @Bind(R.id.refreshLayout)
+    SmartRefreshLayout mRefreshLayout;
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
-    private int mPage=1;
+    private int mPage = 1;
     private static final int PAGE_SIZE = 10;
-    boolean isfresh=false ;
+    boolean isfresh = true;
+
     @Override
     protected int provideContentViewId() {
         return R.layout.activity_book_ticket_vid;
     }
+
     @Override
     public void initView() {
         title.setText("书券有效期");
@@ -61,47 +63,55 @@ public class BookTicketVidAc extends BaseActivity<BookTicketVidPresenter> implem
             }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mSwipeRefreshLayout.setColorSchemeColors(Color.rgb(255,69,0));
+//        mSwipeRefreshLayout.setColorSchemeColors(Color.rgb(255,69,0));
         initRecycler();
         loadData();
 
 
         initRefresh();
-        mSwipeRefreshLayout.setRefreshing(true);
+//        mSwipeRefreshLayout.setRefreshing(true);
     }
+
     public void loadData() {
 
         mPresenter.getBookTicketVidList(mPage);
 
     }
+
     /**
      * time    : 2019/3/14 11:24
      * desc    : 初始化上拉刷新, 下拉加载更多
      * versions: 1.0
-     * 	255,69,0
+     * 255,69,0
      */
     private void initRefresh() {
 
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        mRefreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
-            public void onRefresh() {
-                isfresh = true;
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                mPage++;
+                loadData();
+            }
+
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
                 refresh();
             }
         });
 
     }
+
     /**
      * time    : 2019/3/28 11:22
      * desc    : 刷新列表
      * versions: 1.0
      */
-    private void refresh(){
+    private void refresh() {
         mPage = 1;
-        mAdapter.setEnableLoadMore(false);//这里的作用是防止下拉刷新的时候还可以上拉加载
-//        mAdapter.getData().clear();
+        mAdapter.getData().clear();
         loadData();
     }
+
     /**
      * time    : 2019/3/14 11:24
      * desc    : 初始化列表
@@ -110,20 +120,12 @@ public class BookTicketVidAc extends BaseActivity<BookTicketVidPresenter> implem
     private void initRecycler() {
         mAdapter = new BookTicketVidAdapter();
         recyclerView.setAdapter(mAdapter);
-        mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-            @Override
-            public void onLoadMoreRequested() {
-                mPage++;
-                isfresh = false;
-                loadData();
-            }
-        });
     }
+
     @Override
     protected BookTicketVidPresenter createPresenter() {
         return new BookTicketVidPresenter(this);
     }
-
 
 
     @Override
@@ -133,50 +135,21 @@ public class BookTicketVidAc extends BaseActivity<BookTicketVidPresenter> implem
 
     @Override
     public void stopLoading() {
-
+        mRefreshLayout.finishRefresh();
+        mRefreshLayout.finishLoadmore();
     }
 
     @Override
     public void showErrorTip(String msg) {
-        if (isfresh == true) {
-            Toast.makeText(mContext, "网络错误", Toast.LENGTH_LONG).show();
-            mAdapter.setEnableLoadMore(true);
-            mSwipeRefreshLayout.setRefreshing(false);
-        } else {
-            mAdapter.loadMoreFail();
-            Toast.makeText(mContext, "网络错误", Toast.LENGTH_LONG).show();
-        }
+        mRefreshLayout.finishRefresh();
+        mRefreshLayout.finishLoadmore();
     }
 
     @Override
     public void onBookTicketVidSuccess(MyBookTicketVidListBean b) {
-//        mRefreshLayout.setLoadmoreFinished(b.getList() .size()< 10);
+        mRefreshLayout.setLoadmoreFinished(b.getList().size() < PAGE_SIZE);
+        mAdapter.addData(b.getList());
+    }
 
-        if (isfresh == true) {
-            setData(true, b.getList());
-            mAdapter.setEnableLoadMore(true);
-            mSwipeRefreshLayout.setRefreshing(false);
-        } else if (isfresh == false) {
-//            boolean isRefresh =mPage ==1;
-            setData(isfresh, b.getList());
-        }
-    }
-    private void setData(boolean isRefresh, List data) {
-//        mPage++;
-        final int size = data == null ? 0 : data.size();
-        if (isRefresh) {
-            mAdapter.setNewData(data);
-        } else {
-            if (size > 0) {
-                mAdapter.addData(data);
-            }
-        }
-        if (size < PAGE_SIZE) {
-            //第一页如果不够一页就不显示没有更多数据布局
-            mAdapter.loadMoreEnd(isRefresh);
-            Toast.makeText(this, "no more data", Toast.LENGTH_SHORT).show();
-        } else {
-            mAdapter.loadMoreComplete();
-        }
-    }
+
 }

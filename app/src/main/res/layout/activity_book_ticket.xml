@@ -184,7 +184,7 @@
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-
+                android:id="@+id/ll_book_ticket_recharge_code"
                 android:layout_height="56dp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -210,6 +210,7 @@
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:id="@+id/ll_book_ticket_consum_code"
                 android:layout_height="56dp">
                 <TextView
                     android:layout_width="wrap_content"

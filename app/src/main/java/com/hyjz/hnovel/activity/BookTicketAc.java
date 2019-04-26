@@ -40,6 +40,12 @@ public class BookTicketAc extends BaseActivity<MyBookTicketPresenter> implements
     //书券有效期按钮
     @Bind(R.id.ll_book_ticket_vid)
     LinearLayout ll_book_ticket_vid;
+    //充值记录
+    @Bind(R.id.ll_book_ticket_recharge_code)
+    LinearLayout ll_book_ticket_recharge_code;
+    //消费记录
+    @Bind(R.id.ll_book_ticket_consum_code)
+    LinearLayout ll_book_ticket_consum_code;
     @Override
     protected int provideContentViewId() {
         return R.layout.activity_book_ticket;
@@ -55,7 +61,8 @@ public class BookTicketAc extends BaseActivity<MyBookTicketPresenter> implements
         return new MyBookTicketPresenter(this);
     }
 
-    @OnClick({R.id.back,R.id.ac_ticket_book_ll_recharge,R.id.ll_book_ticket_vid})
+    @OnClick({R.id.back,R.id.ac_ticket_book_ll_recharge,R.id.ll_book_ticket_vid,
+            R.id.ll_book_ticket_recharge_code,R.id.ll_book_ticket_consum_code})
     public void onclick(View v) {
         switch (v.getId()) {
             case R.id.back:
@@ -70,6 +77,15 @@ public class BookTicketAc extends BaseActivity<MyBookTicketPresenter> implements
             case R.id.ll_book_ticket_vid:
                 Intent intent_bookticket_vid = new Intent(mContext, BookTicketVidAc.class);
                 startActivity(intent_bookticket_vid);
+                break;
+                //书券充值记录
+            case R.id.ll_book_ticket_recharge_code:
+                Intent intent_book_ticket_recharge_code = new Intent(mContext, BookTicketRechargeCode.class);
+                startActivity(intent_book_ticket_recharge_code);
+                break;
+                //书券消费记录
+            case R.id.ll_book_ticket_consum_code:
+
                 break;
         }
     }

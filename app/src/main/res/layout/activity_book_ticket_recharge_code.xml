@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.BookTicketVidAc">
+    tools:context=".activity.BookTicketRechargeCode">
 
     <include layout="@layout/title_layout" />
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
-           />
+            />
 
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter
             android:layout_width="match_parent"
