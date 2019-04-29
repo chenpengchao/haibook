@@ -119,5 +119,24 @@ public interface ApiService {
             @Query("year") Integer year,
             @Query("month") Integer month
     );
+    /**
+     * 书币消费记录/api/consume/record/list/page
+     */
+    @POST("/api/consume/record/list/page")
+    Observable<String> myBookTicketConsumList(
+            @Query("access_token") String sessionId,
+            @Query("pageNum") Integer pageNum,
+            @Query("pageSize") Integer pageSize,
+            @Query("year") Integer year,
+            @Query("month") Integer month
+    );
+    /**
+     * 进入钱包页面接口
+     * /api/user/mywallet
+     */
+    @POST("/api/user/mywallet")
+    Observable<String> myWallet(
+            @Query("access_token") String sessionId
+    );
 }
 

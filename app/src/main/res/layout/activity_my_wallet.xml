@@ -9,214 +9,243 @@
     <!--我的钱包页面-->
     <include layout="@layout/title_layout" />
 
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            app:srlEnablePreviewInEditMode="false">
 
-            <LinearLayout
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/mywallet_bg"
-                android:orientation="vertical">
-                <!--余额金币收益相关-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <!--余额相关-->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="28dp"
-                            android:layout_marginTop="29dp"
-                            android:text="当前余额(元)"
-                            android:textColor="#FFE8A3"
-                            android:textSize="10sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="28dp"
-                            android:layout_marginTop="15dp"
-                            android:includeFontPadding="false"
-                            android:text="11.00"
-                            android:textColor="#FFFFFF"
-                            android:textSize="36sp" />
-                    </LinearLayout>
-                    <!--金币相关-->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
-                            android:background="@drawable/circle_fouth_orange"
-                            android:padding="2dp"
-                            android:text="兑换余额"
-                            android:textColor="#FE7067"
-                            android:textSize="10sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:text="当前金币"
-                            android:textColor="#FFE8A3"
-                            android:textSize="10sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:includeFontPadding="false"
-                            android:text="1000"
-                            android:textColor="#FFE8A3"
-                            android:textSize="19sp" />
-
-                    </LinearLayout>
-                    <!--累计收益-->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="55dp"
-                            android:text="累计收益(元)"
-                            android:textColor="#FFE8A3"
-                            android:textSize="10sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:includeFontPadding="false"
-                            android:text="99.05"
-                            android:textColor="#FFE8A3"
-                            android:textSize="19sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-                <!--两行说明-->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="28dp"
-                    android:layout_marginTop="16dp"
-                    android:text="昨日金币收益结算: 0金币 = 0元 (结算汇率：0.0005)"
-                    android:textColor="#FFE8A3"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="28dp"
-                    android:layout_marginTop="8dp"
-                    android:text="金币转换汇率受每日营收收益影响(上下略有浮动)"
-                    android:textColor="#FFE8A3"
-                    android:textSize="10sp" />
-                <!--兑换书币和提现按钮-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="11dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                       <TextView
-                           android:layout_width="wrap_content"
-                            android:textSize="15sp"
-                           android:text="兑换书币"
-                           android:textColor="#FFF3D4"
-                           android:layout_height="wrap_content" />
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:gravity="center"
-                        android:id="@+id/ac_my_wallet_ll_withdraw"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textSize="15sp"
-                            android:text="余额提现"
-                            android:textColor="#FFF3D4"
-                            android:layout_height="wrap_content" />
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@color/white"
-                android:orientation="horizontal">
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tabs"
-                    android:layout_width="0dp"
-                    app:tabTextColor="#878787"
-                    app:tabSelectedTextColor="@color/main_color"
-                    app:tabIndicatorColor="@color/main_color"
-                    app:tabTextAppearance="@style/TabLayoutTextStyle"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-                </android.support.design.widget.TabLayout>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:background="#e0e0e0"
-                android:layout_height="1px" />
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewPager"
+                app:srlAccentColor="@android:color/white" />
+            <!--<android.support.v4.widget.NestedScrollView-->
+            <com.hyjz.hnovel.weight.JudgeNestedScrollView
+                android:id="@+id/scrollView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:overScrollMode="never"
-                android:scrollbars="none">
+                android:fillViewport="true"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            </android.support.v4.view.ViewPager>
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/mywallet_bg"
+                        android:orientation="vertical">
+                        <!--余额金币收益相关-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <!--余额相关-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="28dp"
+                                    android:layout_marginTop="29dp"
+                                    android:text="当前余额(元)"
+                                    android:textColor="#FFE8A3"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="28dp"
+                                    android:layout_marginTop="15dp"
+                                    android:includeFontPadding="false"
+                                    android:text="11.00"
+                                    android:id="@+id/tv_show_remain_money"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="36sp" />
+                            </LinearLayout>
+                            <!--金币相关-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="30dp"
+                                    android:background="@drawable/circle_fouth_orange"
+                                    android:padding="2dp"
+                                    android:text="兑换余额"
+                                    android:textColor="#FE7067"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:text="当前金币"
+                                    android:textColor="#FFE8A3"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:includeFontPadding="false"
+                                    android:text="1000"
+                                    android:id="@+id/tv_recent_coin"
+                                    android:textColor="#FFE8A3"
+                                    android:textSize="19sp" />
+
+                            </LinearLayout>
+                            <!--累计收益-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="55dp"
+                                    android:text="累计收益(元)"
+                                    android:textColor="#FFE8A3"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:includeFontPadding="false"
+                                    android:text="99.05"
+                                    android:id="@+id/tv_leiji_money"
+                                    android:textColor="#FFE8A3"
+                                    android:textSize="19sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <!--两行说明-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="28dp"
+                            android:layout_marginTop="16dp"
+                            android:text="昨日金币收益结算: 0金币 = 0元 (结算汇率：0.0005)"
+                            android:textColor="#FFE8A3"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="28dp"
+                            android:layout_marginTop="8dp"
+                            android:text="金币转换汇率受每日营收收益影响(上下略有浮动)"
+                            android:textColor="#FFE8A3"
+                            android:textSize="10sp" />
+                        <!--兑换书币和提现按钮-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="11dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="兑换书币"
+                                    android:textColor="#FFF3D4"
+                                    android:textSize="15sp" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/ac_my_wallet_ll_withdraw"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="余额提现"
+                                    android:textColor="#FFF3D4"
+                                    android:textSize="15sp" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <net.lucode.hackware.magicindicator.MagicIndicator
+                        android:id="@+id/magic_indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_gravity="bottom"
+                        android:background="@color/white" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="#e0e0e0" />
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white" />
+
+
+                </LinearLayout>
+            </com.hyjz.hnovel.weight.JudgeNestedScrollView>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
         <!--<com.hyjz.hnovel.weight.LoadingTip-->
         <!--android:layout_width="match_parent"-->
         <!--android:gravity="center"-->
         <!--android:layout_height="match_parent">-->
         <!---->
         <!--</com.hyjz.hnovel.weight.LoadingTip>-->
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/magic_indicator_title"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_below="@+id/toolbar"
+            android:background="@color/white"
+            android:visibility="gone"
+            app:layout_collapseMode="pin" />
     </FrameLayout>
+
 
 </LinearLayout>

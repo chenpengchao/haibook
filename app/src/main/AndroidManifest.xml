@@ -73,7 +73,8 @@
         <activity android:name=".activity.GoldTOBookCoinAc" />
         <activity android:name=".activity.GoldToMoneyAc" />
         <activity android:name=".activity.ShiftAc" />
-        <activity android:name=".activity.BookTicketRechargeCode"></activity>
+        <activity android:name=".activity.BookTicketRechargeCode" />
+        <activity android:name=".activity.BookTicketConsumListAc"></activity>
     </application>
 
 </manifest>

@@ -85,7 +85,8 @@ public class BookTicketAc extends BaseActivity<MyBookTicketPresenter> implements
                 break;
                 //书券消费记录
             case R.id.ll_book_ticket_consum_code:
-
+                Intent intent_book_ticket_consum_code = new Intent(mContext, BookTicketConsumListAc.class);
+                startActivity(intent_book_ticket_consum_code);
                 break;
         }
     }

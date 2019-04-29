@@ -14,15 +14,14 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.hyjz.hnovel.R;
+import com.hyjz.hnovel.adapter.BookTicketConsumCodeAdapter;
 import com.hyjz.hnovel.adapter.BookTicketRechargeCodeAdapter;
-import com.hyjz.hnovel.adapter.BookTicketVidAdapter;
 import com.hyjz.hnovel.base.BaseActivity;
 import com.hyjz.hnovel.base.BasePresenter;
+import com.hyjz.hnovel.bean.BookTicketConsumListBean;
 import com.hyjz.hnovel.bean.BookTicketRechargeListBean;
-import com.hyjz.hnovel.presenter.BookCoinRechargeCodePresenter;
-import com.hyjz.hnovel.presenter.BookTicketRechargeCodePresenter;
-import com.hyjz.hnovel.view.BookCoinRechargeCodeView;
-import com.hyjz.hnovel.view.BookTicketRechargeCodeView;
+import com.hyjz.hnovel.presenter.BookTicketConsumeCodePresenter;
+import com.hyjz.hnovel.view.BookTicketConsumCodeView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
@@ -34,10 +33,7 @@ import java.util.Date;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-/**
- * 书券充值记录
- */
-public class BookTicketRechargeCode extends BaseActivity<BookTicketRechargeCodePresenter> implements BookCoinRechargeCodeView, BookTicketRechargeCodeView {
+public class BookTicketConsumListAc extends BaseActivity<BookTicketConsumeCodePresenter> implements BookTicketConsumCodeView {
 
     //标题
     @Bind(R.id.title)
@@ -46,7 +42,7 @@ public class BookTicketRechargeCode extends BaseActivity<BookTicketRechargeCodeP
     @Bind(R.id.back)
     ImageView back;
     //adapter
-    BookTicketRechargeCodeAdapter mAdapter;
+    BookTicketConsumCodeAdapter mAdapter;
     @Bind(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
     @Bind(R.id.recyclerView)
@@ -73,9 +69,9 @@ public class BookTicketRechargeCode extends BaseActivity<BookTicketRechargeCodeP
                 finish();
             }
         });
-       cal = Calendar.getInstance();
-         year = cal.get(Calendar.YEAR);//获取年份
-         month=cal.get(Calendar.MONTH);//获取月份
+        cal = Calendar.getInstance();
+        year = cal.get(Calendar.YEAR);//获取年份
+        month=cal.get(Calendar.MONTH);//获取月份
         tv_select_date.setText(year+"年"+(month+1)+"月");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        mSwipeRefreshLayout.setColorSchemeColors(Color.rgb(255,69,0));
@@ -103,11 +99,11 @@ public class BookTicketRechargeCode extends BaseActivity<BookTicketRechargeCodeP
                 tv_select_date.setText(getTimeAllday(date));
 //                Calendar cal = Calendar.getInstance();
                 cal.setTime(date);
-                 year = cal.get(Calendar.YEAR);//获取年份
-                 month=cal.get(Calendar.MONTH);//获取月份
+                year = cal.get(Calendar.YEAR);//获取年份
+                month=cal.get(Calendar.MONTH);//获取月份
                 mPage = 1;
                 mAdapter.getData().clear();
-                mPresenter.getBookTicketRechargeCodeList(mPage,year,month+1);
+                mPresenter.getBookTicketConsumCodeList(mPage,year,month+1);
             }
         })
                 .setType(new boolean[]{true, true, false,false,false,false})// 默认全部显示
@@ -135,7 +131,7 @@ public class BookTicketRechargeCode extends BaseActivity<BookTicketRechargeCodeP
     public void loadData() {
 
 
-        mPresenter.getBookTicketRechargeCodeList(mPage,year,month+1);
+        mPresenter.getBookTicketConsumCodeList(mPage,year,month+1);
 
     }
 
@@ -179,17 +175,24 @@ public class BookTicketRechargeCode extends BaseActivity<BookTicketRechargeCodeP
      * versions: 1.0
      */
     private void initRecycler() {
-        mAdapter = new BookTicketRechargeCodeAdapter();
+        mAdapter = new BookTicketConsumCodeAdapter();
         recyclerView.setAdapter(mAdapter);
     }
+
     @Override
-    protected BookTicketRechargeCodePresenter createPresenter() {
-        return new BookTicketRechargeCodePresenter(this);
+    protected BookTicketConsumeCodePresenter createPresenter() {
+        return new BookTicketConsumeCodePresenter(this);
     }
 
     @Override
     protected int provideContentViewId() {
-        return R.layout.activity_book_ticket_recharge_code;
+        return R.layout.activity_book_ticket_consum_list;
+    }
+
+    @Override
+    public void onSuccess(BookTicketConsumListBean b) {
+        mRefreshLayout.setLoadmoreFinished(b.getList().size() < PAGE_SIZE);
+        mAdapter.addData(b.getList());
     }
 
     @Override
@@ -207,11 +210,5 @@ public class BookTicketRechargeCode extends BaseActivity<BookTicketRechargeCodeP
     public void showErrorTip(String msg) {
         mRefreshLayout.finishRefresh();
         mRefreshLayout.finishLoadmore();
-    }
-
-    @Override
-    public void onSuccess(BookTicketRechargeListBean b) {
-        mRefreshLayout.setLoadmoreFinished(b.getList().size() < PAGE_SIZE);
-        mAdapter.addData(b.getList());
     }
 }

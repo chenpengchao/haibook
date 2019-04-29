@@ -93,4 +93,5 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
     //时间选择器
     implementation 'com.contrarywind:Android-PickerView:4.1.7'
+    implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
 }
