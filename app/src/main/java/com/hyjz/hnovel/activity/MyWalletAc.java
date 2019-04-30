@@ -69,6 +69,9 @@ public class MyWalletAc extends BaseActivity<MyWalletPresenter> implements MyWal
     //累计收益
     @Bind(R.id.tv_leiji_money)
     TextView tv_leiji_money;
+    //排行榜按钮
+    @Bind(R.id.tv_my_wallet_paihang)
+    TextView tv_my_wallet_paihang;
     @Bind(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
 //    @Bind(R.id.toolbar)
@@ -94,198 +97,25 @@ public class MyWalletAc extends BaseActivity<MyWalletPresenter> implements MyWal
     public void initView() {
         title.setText("我的钱包");
         mPresenter.getMyWallet();
-        init();
     }
-        private void init () {
-//            StatusBarUtil.immersive(this);
-//            StatusBarUtil.setPaddingSmart(this, toolbar);
-            refreshLayout.setOnMultiPurposeListener(new SimpleMultiPurposeListener() {
-                @Override
-                public void onHeaderPulling(RefreshHeader header, float percent, int offset, int bottomHeight, int extendHeight) {
-                    mOffset = offset / 2;
-//                    ivHeader.setTranslationY(mOffset - mScrollY);
-//                    toolbar.setAlpha(1 - Math.min(percent, 1));
-                }
 
-                @Override
-                public void onHeaderReleasing(RefreshHeader header, float percent, int offset, int bottomHeight, int extendHeight) {
-                    mOffset = offset / 2;
-//                    ivHeader.setTranslationY(mOffset - mScrollY);
-//                    toolbar.setAlpha(1 - Math.min(percent, 1));
-                }
-            });
-
-            //判断是否是华为手机并且是否有虚拟导航键
-//        if (DeviceUtil.isHUAWEI() && DeviceUtil.checkDeviceHasNavigationBar(this.getApplicationContext())) {
-//            getContentResolver().registerContentObserver(Settings.System.getUriFor
-//                    ("navigationbar_is_min"), true, mNavigationStatusObserver);
-//        }
-            toolbar.post(new Runnable() {
-                @Override
-                public void run() {
-                    dealWithViewPager();
-                }
-            });
-            scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-                int lastScrollY = 0;
-                int h = DensityUtil.dp2px(170);
-                int color = ContextCompat.getColor(getApplicationContext(), R.color.white) & 0x00ffffff;
-
-                @Override
-                public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                    int[] location = new int[2];
-                    magicIndicator.getLocationOnScreen(location);
-                    int yPosition = location[1];
-                    if (yPosition < toolBarPositionY) {
-                        magicIndicatorTitle.setVisibility(View.VISIBLE);
-                        scrollView.setNeedScroll(false);
-                    } else {
-                        magicIndicatorTitle.setVisibility(View.GONE);
-                        scrollView.setNeedScroll(true);
-
-                    }
-
-//                    if (lastScrollY < h) {
-//                        scrollY = Math.min(h, scrollY);
-//                        mScrollY = scrollY > h ? h : scrollY;
-//                        buttonBarLayout.setAlpha(1f * mScrollY / h);
-//                        toolbar.setBackgroundColor(((255 * mScrollY / h) << 24) | color);
-//                        ivHeader.setTranslationY(mOffset - mScrollY);
-//                    }
-//                    if (scrollY == 0) {
-//                        ivBack.setImageResource(R.drawable.back_white);
-//                        ivMenu.setImageResource(R.drawable.icon_menu_white);
-//                    } else {
-//                        ivBack.setImageResource(R.drawable.back_black);
-//                        ivMenu.setImageResource(R.drawable.icon_menu_black);
-//                    }
-
-                    lastScrollY = scrollY;
-                }
-            });
-//            buttonBarLayout.setAlpha(0);
-//            toolbar.setBackgroundColor(0);
-
-
-            viewPager.setAdapter(new ComFragmentAdapter(getSupportFragmentManager(), getFragments()));
-            viewPager.setOffscreenPageLimit(10);
-            initMagicIndicator();
-            initMagicIndicatorTitle();
-        }
-
-        private void dealWithViewPager () {
-            toolBarPositionY = toolbar.getHeight();
-            ViewGroup.LayoutParams params = viewPager.getLayoutParams();
-            params.height = ScreenUtil.getScreenHeightPx(getApplicationContext()) - toolBarPositionY - magicIndicator.getHeight() + 1;
-            viewPager.setLayoutParams(params);
-        }
-
-        private List<Fragment> getFragments () {
-            List<Fragment> fragments = new ArrayList<>();
-            fragments.add(DynamicFragment.getInstance());
-            fragments.add(ArticleFragment.getInstance());
-            fragments.add(QuestionFragment.getInstance());
-            return fragments;
-        }
-
-        private void initMagicIndicator () {
-            CommonNavigator commonNavigator = new CommonNavigator(this);
-            commonNavigator.setScrollPivotX(0.65f);
-            commonNavigator.setAdjustMode(true);
-            commonNavigator.setAdapter(new CommonNavigatorAdapter() {
-                @Override
-                public int getCount() {
-                    return mDataList == null ? 0 : mDataList.size();
-                }
-
-                @Override
-                public IPagerTitleView getTitleView(Context context, final int index) {
-                    SimplePagerTitleView simplePagerTitleView = new ColorFlipPagerTitleView(context);
-                    simplePagerTitleView.setText(mDataList.get(index));
-                    simplePagerTitleView.setNormalColor(ContextCompat.getColor(MyWalletAc.this, R.color.main_color));
-                    simplePagerTitleView.setSelectedColor(ContextCompat.getColor(MyWalletAc.this, R.color.main_color));
-                    simplePagerTitleView.setTextSize(16);
-                    simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            viewPager.setCurrentItem(index, false);
-                        }
-                    });
-                    return simplePagerTitleView;
-                }
-
-                @Override
-                public IPagerIndicator getIndicator(Context context) {
-                    LinePagerIndicator indicator = new LinePagerIndicator(context);
-                    indicator.setMode(LinePagerIndicator.MODE_EXACTLY);
-                    indicator.setLineHeight(UIUtil.dip2px(context, 2));
-                    indicator.setLineWidth(UIUtil.dip2px(context, 20));
-                    indicator.setRoundRadius(UIUtil.dip2px(context, 3));
-                    indicator.setStartInterpolator(new AccelerateInterpolator());
-                    indicator.setEndInterpolator(new DecelerateInterpolator(2.0f));
-                    indicator.setColors(ContextCompat.getColor(MyWalletAc.this, R.color.main_color));
-                    return indicator;
-                }
-            });
-            magicIndicator.setNavigator(commonNavigator);
-            ViewPagerHelper.bind(magicIndicator, viewPager);
-        }
-
-        private void initMagicIndicatorTitle () {
-            CommonNavigator commonNavigator = new CommonNavigator(this);
-            commonNavigator.setScrollPivotX(0.65f);
-            commonNavigator.setAdjustMode(true);
-            commonNavigator.setAdapter(new CommonNavigatorAdapter() {
-                @Override
-                public int getCount() {
-                    return mDataList == null ? 0 : mDataList.size();
-                }
-
-                @Override
-                public IPagerTitleView getTitleView(Context context, final int index) {
-                    SimplePagerTitleView simplePagerTitleView = new ColorFlipPagerTitleView(context);
-                    simplePagerTitleView.setText(mDataList.get(index));
-                    simplePagerTitleView.setNormalColor(ContextCompat.getColor(MyWalletAc.this, R.color.main_color));
-                    simplePagerTitleView.setSelectedColor(ContextCompat.getColor(MyWalletAc.this, R.color.main_color));
-                    simplePagerTitleView.setTextSize(16);
-                    simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            viewPager.setCurrentItem(index, false);
-                        }
-                    });
-                    return simplePagerTitleView;
-                }
-
-                @Override
-                public IPagerIndicator getIndicator(Context context) {
-                    LinePagerIndicator indicator = new LinePagerIndicator(context);
-                    indicator.setMode(LinePagerIndicator.MODE_EXACTLY);
-                    indicator.setLineHeight(UIUtil.dip2px(context, 2));
-                    indicator.setLineWidth(UIUtil.dip2px(context, 20));
-                    indicator.setRoundRadius(UIUtil.dip2px(context, 3));
-                    indicator.setStartInterpolator(new AccelerateInterpolator());
-                    indicator.setEndInterpolator(new DecelerateInterpolator(2.0f));
-                    indicator.setColors(ContextCompat.getColor(MyWalletAc.this, R.color.main_color));
-                    return indicator;
-                }
-            });
-            magicIndicatorTitle.setNavigator(commonNavigator);
-            ViewPagerHelper.bind(magicIndicatorTitle, viewPager);
-
-    }
     @Override
     protected MyWalletPresenter createPresenter() {
         return new MyWalletPresenter(this);
     }
 
-    @OnClick({R.id.ac_my_wallet_ll_withdraw})
+    @OnClick({R.id.ac_my_wallet_ll_withdraw,R.id.tv_my_wallet_paihang})
     public void onclick(View v) {
         switch (v.getId()) {
             //余额提现按钮
             case R.id.ac_my_wallet_ll_withdraw:
                 Intent intent = new Intent(mContext, WithDrawCrashAc.class);
                 startActivity(intent);
+                break;
+                //排行榜
+            case R.id.tv_my_wallet_paihang:
+                Intent intent1 = new Intent(mContext, PaihangAc.class);
+                startActivity(intent1);
                 break;
         }
     }

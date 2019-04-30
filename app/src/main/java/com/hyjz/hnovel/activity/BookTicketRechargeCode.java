@@ -52,7 +52,7 @@ public class BookTicketRechargeCode extends BaseActivity<BookTicketRechargeCodeP
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
     private int mPage = 1;
-    private static final int PAGE_SIZE = 10;
+    private static final int PAGE_SIZE = 15;
     //选择日期
     @Bind(R.id.tv_select_date)
     TextView tv_select_date;

@@ -138,5 +138,15 @@ public interface ApiService {
     Observable<String> myWallet(
             @Query("access_token") String sessionId
     );
+    /**
+     * 钱包收益排行
+     * /api/user/list/rank/wallet
+     */
+    @POST("/api/user/list/rank/wallet")
+    Observable<String> myWalletPaihang(
+            @Query("access_token") String sessionId,
+            @Query("pageNum") Integer pageNum,
+            @Query("pageSize") Integer pageSize
+    );
 }
 
