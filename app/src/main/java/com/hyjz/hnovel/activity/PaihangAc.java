@@ -34,7 +34,9 @@ import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-
+/**
+ * 排行榜页面
+ */
 public class PaihangAc extends BaseActivity<PaihangPresenter> implements PaihangView {
 
     //标题

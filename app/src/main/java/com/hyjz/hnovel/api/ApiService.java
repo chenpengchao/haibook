@@ -148,5 +148,47 @@ public interface ApiService {
             @Query("pageNum") Integer pageNum,
             @Query("pageSize") Integer pageSize
     );
+    /**
+     * 金币兑换书币页面
+     * //api/exchange/bookcoin
+     */
+    @POST("api/exchange/info")
+    Observable<String> goldtobookcoininfo(
+            @Query("access_token") String sessionId,
+            @Query("exchangeType") Integer exchangeType
+    );
+    /**
+     * 金币兑换书币
+     * //api/exchange/bookcoin
+     */
+    @POST("/api/exchange/bookcoin")
+    Observable<String> goldtobookcoin(
+            @Query("access_token") String sessionId,
+            @Query("bookcoin") Integer bookcoin
+    );
+    /**
+     * 金币兑换余额api/exchange/money
+     */
+    @POST("/api/exchange/money")
+    Observable<String> goldtomoney(
+            @Query("access_token") String sessionId,
+            @Query("cash") Integer cash
+    );
+    /**
+     * 提现界面api/user/withdraw
+     */
+    @POST("/api/user/withdraw")
+    Observable<String> withdrawinfo(
+            @Query("access_token") String sessionId
+    );
+
+    /**
+     * 提现api/withdraw/apply/add
+     */
+    @POST("/api/withdraw/apply/add")
+    Observable<String> withdraw(
+            @Query("access_token") String sessionId,
+            @Query("withdrawAmount") Float withdrawAmount
+    );
 }
 

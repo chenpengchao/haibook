@@ -11,6 +11,7 @@ import com.hyjz.hnovel.bean.MyWalletPaihangBean;
 import com.hyjz.hnovel.utils.GlideUtils;
 import com.hyjz.hnovel.weight.CircleImageView;
 
+
 public class PaihangAdapter extends BaseQuickAdapter<MyWalletPaihangBean,BaseViewHolder> {
 
     public PaihangAdapter() {

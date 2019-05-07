@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.hyjz.hnovel.R;
 import com.hyjz.hnovel.base.BaseActivity;
 import com.hyjz.hnovel.base.BasePresenter;
+import com.hyjz.hnovel.bean.MessageEvent;
 import com.hyjz.hnovel.bean.MyWalletBean;
 import com.hyjz.hnovel.presenter.MyWalletPresenter;
 import com.hyjz.hnovel.view.MyWalletView;
@@ -39,6 +40,9 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerInd
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -74,7 +78,7 @@ public class MyWalletAc extends BaseActivity<MyWalletPresenter> implements MyWal
     TextView tv_my_wallet_paihang;
     @Bind(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
-//    @Bind(R.id.toolbar)
+    //    @Bind(R.id.toolbar)
 //    Toolbar toolbar;
     @Bind(R.id.view_pager)
     ViewPager viewPager;
@@ -84,15 +88,29 @@ public class MyWalletAc extends BaseActivity<MyWalletPresenter> implements MyWal
     MagicIndicator magicIndicator;
     @Bind(R.id.magic_indicator_title)
     MagicIndicator magicIndicatorTitle;
+    //兑换书币按钮
+    @Bind(R.id.ll_excharge_book_coin)
+    LinearLayout ll_excharge_book_coin;
+    //金币兑换余额
+    @Bind(R.id.ll_gold_to_money)
+    LinearLayout ll_gold_to_money;
     int toolBarPositionY = 0;
     private int mOffset = 0;
     private int mScrollY = 0;
     private String[] mTitles = new String[]{"金币获得记录", "金币兑换记录", "余额提现记录"};
     private List<String> mDataList = Arrays.asList(mTitles);
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getMessage(MessageEvent event) {
+        if (event.getMessage().equals("goldTobookcoinSuccess")) {
+            mPresenter.getMyWallet();
+        }
+    }
     @Override
     protected int provideContentViewId() {
         return R.layout.activity_my_wallet;
     }
+
     @Override
     public void initView() {
         title.setText("我的钱包");
@@ -104,7 +122,7 @@ public class MyWalletAc extends BaseActivity<MyWalletPresenter> implements MyWal
         return new MyWalletPresenter(this);
     }
 
-    @OnClick({R.id.ac_my_wallet_ll_withdraw,R.id.tv_my_wallet_paihang})
+    @OnClick({R.id.ac_my_wallet_ll_withdraw, R.id.tv_my_wallet_paihang, R.id.ll_excharge_book_coin,R.id.ll_gold_to_money})
     public void onclick(View v) {
         switch (v.getId()) {
             //余额提现按钮
@@ -112,10 +130,20 @@ public class MyWalletAc extends BaseActivity<MyWalletPresenter> implements MyWal
                 Intent intent = new Intent(mContext, WithDrawCrashAc.class);
                 startActivity(intent);
                 break;
-                //排行榜
+            //排行榜
             case R.id.tv_my_wallet_paihang:
                 Intent intent1 = new Intent(mContext, PaihangAc.class);
                 startActivity(intent1);
+                break;
+            //兑换书币
+            case R.id.ll_excharge_book_coin:
+                Intent intent2 = new Intent(mContext, GoldTOBookCoinAc.class);
+                startActivity(intent2);
+                break;
+                //兑换余额
+            case R.id.ll_gold_to_money:
+                Intent intent3 = new Intent(mContext, GoldToMoneyAc.class);
+                startActivity(intent3);
                 break;
         }
     }
@@ -127,10 +155,10 @@ public class MyWalletAc extends BaseActivity<MyWalletPresenter> implements MyWal
         if (b.getCash() != null) {
             tv_show_remain_money.setText(b.getCash() + "");
         } else {
-            tv_show_remain_money.setText( "0");
+            tv_show_remain_money.setText("0");
         }
         if (b.getGoldCoin() != null) {
-            tv_recent_coin.setText(b.getGoldCoin()+"");
+            tv_recent_coin.setText(b.getGoldCoin() + "");
 
         } else {
             tv_recent_coin.setText("0");

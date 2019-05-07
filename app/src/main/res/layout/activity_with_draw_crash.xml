@@ -52,6 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
+                android:id="@+id/tv_already_withdraw"
                 android:gravity="center"
                 android:text="111111.11元"
                 android:textSize="18sp" />
@@ -77,6 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:id="@+id/tv_can_withdraw"
                 android:text="111111.11元"
                 android:textColor="#F54337"
                 android:textSize="30sp" />
@@ -86,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:gravity="center"
-                android:text="已提现总奖励"
+                android:text="可提现余额"
                 android:textColor="#6E6E6E"
                 android:textSize="12sp" />
 

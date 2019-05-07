@@ -1,9 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.GoldTOBookCoinAc">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/title_layout" />
+    <!--金币余额-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="18dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:text="金币余额："
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:id="@+id/tv_show_gold_coin"
+            android:text="123456金币"
+            android:textColor="#F54337"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="快速兑换"
+        android:layout_marginTop="23dp"
+        android:textColor="#828282"
+        android:textSize="12sp"
+        android:layout_marginLeft="19dp"
+        android:layout_height="wrap_content" />
+    <!--充值金额1-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <!--一个月-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="9dp"
+            android:layout_weight="1"
+            android:id="@+id/ll_book_coin_1"
+            android:gravity="center"
+            android:background="@drawable/circle_eight_red"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_book_coin_1"
+                android:layout_marginTop="18dp"
+                android:includeFontPadding="false"
+                android:text="1000书币"
+                android:textColor="#F54337"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_gold_coin_1"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="14dp"
+                android:includeFontPadding="false"
+                android:text="1000金币"
+                android:textColor="#343434"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+        <!--三个月-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="9dp"
+            android:layout_weight="1"
+            android:id="@+id/ll_book_coin_2"
+            android:gravity="center"
+            android:background="@drawable/circle_eight_red"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_book_coin_2"
+                android:layout_marginTop="18dp"
+                android:includeFontPadding="false"
+                android:text="2000书币"
+                android:textColor="#F54337"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_gold_coin_2"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="14dp"
+                android:includeFontPadding="false"
+                android:text="2000金币"
+                android:textColor="#343434"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--充值金额2-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <!--一个月-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="9dp"
+            android:layout_weight="1"
+            android:id="@+id/ll_book_coin_3"
+            android:gravity="center"
+            android:background="@drawable/circle_eight_red"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:includeFontPadding="false"
+                android:text="5000书币"
+                android:id="@+id/tv_book_coin_3"
+                android:textColor="#F54337"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:id="@+id/tv_gold_coin_3"
+                android:layout_marginBottom="14dp"
+                android:includeFontPadding="false"
+                android:text="5000金币"
+                android:textColor="#343434"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+        <!--三个月-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="9dp"
+            android:id="@+id/ll_book_coin_4"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/circle_eight_red"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:includeFontPadding="false"
+                android:text="10000书币"
+                android:id="@+id/tv_book_coin_4"
+                android:textColor="#F54337"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="14dp"
+                android:includeFontPadding="false"
+                android:text="10000金币"
+                android:id="@+id/tv_gold_coin_4"
+                android:textColor="#343434"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <!--兑换按钮-->
+    <TextView
+        android:layout_width="337dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="33dp"
+        android:id="@+id/tv_gold_tobookcoin_confirm"
+        android:background="@drawable/six_circle_red"
+        android:text="确认兑换"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_height="40dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="温馨提示"
+        android:layout_marginTop="23dp"
+        android:textColor="#333333"
+        android:textSize="15sp"
+        android:layout_marginLeft="19dp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:textColor="#595656"
+        android:textSize="13sp"
+        android:layout_marginTop="19dp"
+        android:text="1.申请提交后，系统会自动进行兑换，用户可在个人中心中查看。
+2.如有问题，可关注公众号【嗨星球】咨询。"
+        android:layout_height="wrap_content" />
+</LinearLayout>

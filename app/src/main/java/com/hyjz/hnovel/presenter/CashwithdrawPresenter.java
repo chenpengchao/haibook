@@ -3,21 +3,20 @@ package com.hyjz.hnovel.presenter;
 import com.hyjz.hnovel.app.MyApp;
 import com.hyjz.hnovel.base.BasePresenter;
 import com.hyjz.hnovel.bean.BaseBean;
-import com.hyjz.hnovel.bean.GoldtoBookCoinInfoBean;
-import com.hyjz.hnovel.bean.GoldtoMoneyInfoBean;
+import com.hyjz.hnovel.bean.WithDrawInfoBean;
 import com.hyjz.hnovel.utils.GsonUtils;
-import com.hyjz.hnovel.view.GoldtoMoneyView;
+import com.hyjz.hnovel.view.CashwithdrawView;
 
 import rx.Subscriber;
 
-public class GoldToMoneyPresenter extends BasePresenter<GoldtoMoneyView> {
-    public GoldToMoneyPresenter(GoldtoMoneyView view) {
+public class CashwithdrawPresenter extends BasePresenter<CashwithdrawView> {
+    public CashwithdrawPresenter(CashwithdrawView view) {
         super(view);
     }
-    public void goldtobookcoininfo(Integer exchangeType) {
+    public void withdrawinfo() {
         mView.showLoading("加载中...");
-        addSubscription(mApiService.goldtobookcoininfo(MyApp.getInstance().getToken(),exchangeType).map((str) -> GsonUtils.fromJson(str, GoldtoMoneyInfoBean.class)),
-                new Subscriber<BaseBean<GoldtoMoneyInfoBean>>() {
+        addSubscription(mApiService.withdrawinfo(MyApp.getInstance().getToken()).map((str) -> GsonUtils.fromJson(str, WithDrawInfoBean.class)),
+                new Subscriber<BaseBean<WithDrawInfoBean>>() {
                     @Override
                     public void onCompleted() {
                         mView.stopLoading();
@@ -29,7 +28,7 @@ public class GoldToMoneyPresenter extends BasePresenter<GoldtoMoneyView> {
                     }
 
                     @Override
-                    public void onNext(BaseBean<GoldtoMoneyInfoBean> b) {
+                    public void onNext(BaseBean<WithDrawInfoBean> b) {
                         if (b.getMessage().equals("SUCCESS")) {
                             mView.onInfoSuccess(b.getResult());
 
@@ -37,9 +36,9 @@ public class GoldToMoneyPresenter extends BasePresenter<GoldtoMoneyView> {
                     }
                 });
     }
-    public void goldtomoney(Integer cash) {
+    public void withdraw(Float cash) {
         mView.showLoading("加载中...");
-        addSubscription(mApiService.goldtomoney(MyApp.getInstance().getToken(),cash).map((str) -> GsonUtils.fromJson(str, String.class)),
+        addSubscription(mApiService.withdraw(MyApp.getInstance().getToken(),cash).map((str) -> GsonUtils.fromJson(str, String.class)),
                 new Subscriber<BaseBean<String>>() {
                     @Override
                     public void onCompleted() {
@@ -54,9 +53,7 @@ public class GoldToMoneyPresenter extends BasePresenter<GoldtoMoneyView> {
                     @Override
                     public void onNext(BaseBean<String> b) {
                         if (b.getMessage().equals("SUCCESS")) {
-                            mView.onGoldToMoneySuccess();
-                        } else if (b.getMessage().equals("金币不足")) {
-                            mView.onGoldToMoneyFailue();
+                            mView.onWithDrawSuccess();
                         }
                     }
                 });

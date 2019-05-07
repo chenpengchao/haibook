@@ -22,12 +22,19 @@ import android.widget.TextView;
 import com.hyjz.hnovel.R;
 import com.hyjz.hnovel.base.BaseActivity;
 import com.hyjz.hnovel.base.BasePresenter;
+import com.hyjz.hnovel.bean.WithDrawInfoBean;
+import com.hyjz.hnovel.presenter.CashwithdrawPresenter;
 import com.hyjz.hnovel.utils.AnimUtil;
+import com.hyjz.hnovel.utils.ToastUtil;
+import com.hyjz.hnovel.view.CashwithdrawView;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class CashwithdrawalAc extends BaseActivity implements View.OnClickListener {
+/**
+ * 提现第二个页面
+ */
+public class CashwithdrawalAc extends BaseActivity<CashwithdrawPresenter> implements View.OnClickListener, CashwithdrawView {
     @Bind(R.id.back)
     ImageView back;
     @Bind(R.id.title)
@@ -79,15 +86,16 @@ public class CashwithdrawalAc extends BaseActivity implements View.OnClickListen
     @Override
     public void initView() {
         title.setText("提现");
+        mPresenter.withdrawinfo();
         animUtil = new AnimUtil();
     }
 
     @Override
-    protected BasePresenter createPresenter() {
-        return null;
+    protected CashwithdrawPresenter createPresenter() {
+        return new CashwithdrawPresenter(this);
     }
 
-    @OnClick({R.id.back,R.id.ac_cashwithdraw_tv_setalipay})
+    @OnClick({R.id.back,R.id.ac_cashwithdraw_tv_setalipay,R.id.ac_cashwithdraw_tv_confirm})
     public void onclick(View v) {
         switch (v.getId()) {
             case R.id.back:
@@ -97,7 +105,17 @@ public class CashwithdrawalAc extends BaseActivity implements View.OnClickListen
                 showPopup();
                 toggleBright();
                 break;
-
+            case R.id.ac_cashwithdraw_tv_confirm:
+                String a = ac_cashwithdraw_et.getText().toString().trim();
+                if (a == null || a.equals("")) {
+                    ToastUtil.showShort(mContext,"请输入提现金额");
+                    return;
+                } else if (Float.valueOf(a) < 20) {
+                    ToastUtil.showShort(mContext,"提现金额不能小于20");
+                    return;
+                }
+                mPresenter.withdraw(Float.valueOf(a));
+                break;
         }
     }
     @Override
@@ -233,4 +251,29 @@ public class CashwithdrawalAc extends BaseActivity implements View.OnClickListen
     }
 
 
+    @Override
+    public void onInfoSuccess(WithDrawInfoBean bean) {
+        ac_cashwithdraw_remainder.setText(bean.getCanWithdrawCash()+"元");
+    }
+
+    @Override
+    public void onWithDrawSuccess() {
+        ToastUtil.showShort(mContext,"提现成功");
+        mPresenter.withdrawinfo();
+    }
+
+    @Override
+    public void showLoading(String title) {
+
+    }
+
+    @Override
+    public void stopLoading() {
+
+    }
+
+    @Override
+    public void showErrorTip(String msg) {
+
+    }
 }
