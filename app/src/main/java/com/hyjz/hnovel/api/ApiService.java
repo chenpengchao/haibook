@@ -190,5 +190,12 @@ public interface ApiService {
             @Query("access_token") String sessionId,
             @Query("withdrawAmount") Float withdrawAmount
     );
+    /**
+     * 成为vip页面信息api/recharge/info/readvip
+     */
+    @POST("/api/recharge/info/readvip")
+    Observable<String> readvip(
+            @Query("access_token") String sessionId
+    );
 }
 

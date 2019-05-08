@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.hyjz.hnovel.R;
 import com.hyjz.hnovel.activity.AboutHNovelAc;
+import com.hyjz.hnovel.activity.BeVipAc;
 import com.hyjz.hnovel.activity.BookTicketAc;
 import com.hyjz.hnovel.activity.CashwithdrawalAc;
 import com.hyjz.hnovel.activity.FeedBackAc;
@@ -132,7 +133,8 @@ public class MineFm extends BaseFragment<MinePresenter> implements MineView {
 
     @OnClick({R.id.ll_mine_feedback, R.id.ll_persional_information, R.id.tv_mine_recharge,
             R.id.fm_mine_tv_cashwithdraw, R.id.ll_my_wallet, R.id.fm_mine_ll_my_book_shelf,
-            R.id.fm_mine_ll_my_message, R.id.fm_mine_ll_my_comment,R.id.fm_mine_ll_about_hi
+            R.id.fm_mine_ll_my_message, R.id.fm_mine_ll_my_comment,R.id.fm_mine_ll_about_hi,
+            R.id.ll_vip_show
     })
 
     public void onclick(View v) {
@@ -181,7 +183,11 @@ public class MineFm extends BaseFragment<MinePresenter> implements MineView {
                 Intent intentAboutHi = new Intent(mContext,AboutHNovelAc.class);
                 startActivity(intentAboutHi);
                 break;
-
+                //是会员的时候的显示
+            case R.id.ll_vip_show:
+                Intent intentVipShow = new Intent(mContext,BeVipAc.class);
+                startActivity(intentVipShow);
+                break;
         }
     }
 
