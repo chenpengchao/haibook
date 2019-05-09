@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:clipToPadding="true"
+    android:background="@color/white"
     tools:context=".fragment.HaiBookShelfFm">
     <!--<android.support.design.widget.AppBarLayout-->
         <!--android:layout_width="match_parent"-->
@@ -56,39 +57,26 @@
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>
     <!--</android.support.design.widget.AppBarLayout>-->
-    
-        <com.chaychan.uikit.refreshlayout.BGARefreshLayout
-            android:id="@+id/refresh_layout"
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            >
+            android:background="@color/white" />
 
-            <FrameLayout
-                android:id="@+id/fl_content"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                >
-
-                <com.chaychan.uikit.powerfulrecyclerview.PowerfulRecyclerView
-                    android:id="@+id/rv_news"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    app:dividerMarginLeft="10dp"
-                    app:dividerMarginRight="10dp"
-                    app:dividerColor="@color/color_d8d8d8"
-                    app:dividerSize="0.5dp"
-                    />
-                <com.hyjz.hnovel.weight.LoadingTip
-                    android:id="@+id/loadedTip"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-            </FrameLayout>
-
-        </com.chaychan.uikit.refreshlayout.BGARefreshLayout>
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 
 

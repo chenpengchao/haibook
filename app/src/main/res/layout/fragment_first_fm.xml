@@ -2,12 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.FirstFm">
 
    <!--首页-->
     <include layout="@layout/title_layout" />
+    <ProgressBar
+        android:id="@+id/ProgressBar"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:progressDrawable="@drawable/progress_bg"
+        android:layout_height="3dp"
+        />
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       />
 
 
 </LinearLayout>

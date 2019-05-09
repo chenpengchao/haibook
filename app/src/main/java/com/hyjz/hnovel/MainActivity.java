@@ -62,6 +62,7 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements LoginV
     private HiMoneyFm hiMoneyFm;
     private BookCircleFm bookCircleFm;
     private MineFm mineFm;
+    int position = 0;
     private static int tabLayoutHeight;
     Bundle savedInstance = null;
     public static MainActivity instance;
@@ -215,7 +216,7 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements LoginV
             transaction.add(R.id.fl_body, hiMoneyFm, "hiMoneyFm");
             transaction.add(R.id.fl_body, bookCircleFm, "bookCircleFm");
             transaction.add(R.id.fl_body, mineFm, "mineFm");
-            transaction.addToBackStack(null);
+//            transaction.addToBackStack(null);
             transaction.commit();
         }
 
@@ -232,6 +233,7 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements LoginV
         switch (position) {
             //首页
             case 0:
+                position =0;
                 transaction.hide(firstFm);
                 transaction.hide(hiMoneyFm);
                 transaction.hide(bookCircleFm);
@@ -241,6 +243,7 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements LoginV
                 break;
             //美女
             case 1:
+                position = 1;
                 transaction.show(firstFm);
                 transaction.hide(hiMoneyFm);
                 transaction.hide(bookCircleFm);
@@ -250,6 +253,7 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements LoginV
                 break;
             //视频
             case 2:
+                position = 2;
                 transaction.hide(firstFm);
                 transaction.show(hiMoneyFm);
                 transaction.hide(bookCircleFm);
@@ -259,6 +263,7 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements LoginV
                 break;
             //关注
             case 3:
+                position = 3;
                 transaction.hide(firstFm);
                 transaction.hide(hiMoneyFm);
                 transaction.show(bookCircleFm);
@@ -267,6 +272,7 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements LoginV
                 transaction.commitAllowingStateLoss();
                 break;
             case 4:
+                position = 4;
                 if (MyApp.getInstance().getToken() == null) {
                     startActivity(new Intent(this, LoginAc.class));
                 } else {
@@ -320,10 +326,21 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements LoginV
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            moveTaskToBack(false);
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            moveTaskToBack(false);
+//            return true;
+//        }
+        if (position == 1) {
+            FirstFm.clickBack(keyCode, event);
             return true;
         }
+//        else if (position == 2) {
+//            HiMoneyFm.clickBack(keyCode, event);
+//            return true;
+//        } else if (position == 3) {
+//            QcodeLoanAndFriendFm.clickBack(keyCode, event);
+//            return true;
+//        }
         return super.onKeyDown(keyCode, event);
     }
 }

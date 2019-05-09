@@ -13,24 +13,24 @@ import com.hyjz.hnovel.utils.GlideUtils;
 
 import java.util.List;
 
-public class BookShelfAdapter extends BaseQuickAdapter<BookRecommend,BaseViewHolder> {
+public class BookShelfAdapter extends BaseQuickAdapter<BookRecommend.BookShelfList,BaseViewHolder> {
 
-    public BookShelfAdapter( @Nullable List<BookRecommend> data) {
-        super(R.layout.item_book_detail_book_shelf_list, data);
+    public BookShelfAdapter() {
+        super(R.layout.item_book_detail_book_shelf_list, null);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, BookRecommend item) {
+    protected void convert(BaseViewHolder helper, BookRecommend.BookShelfList item) {
         //小说封面
-        GlideUtils.load(mContext, ApiConstants.IMG_BASE_URL+item.cover, helper.getView(R.id.ivBookListCover));
+        GlideUtils.load(mContext, item.getBookCover(), helper.getView(R.id.ivBookListCover));
         //小说标题
-        helper.setText(R.id.tvBookListTitle, item.title);
+        helper.setText(R.id.tvBookListTitle, item.getBookName());
         //是否在更新
-        helper.setText(R.id.tv_is_lianzai_or_over, item.latelyFollower + "");
+        helper.setText(R.id.tv_is_lianzai_or_over, item.getLastChapterTitle() + "");
         //作者
-        helper.setText(R.id.tvBookAuthor, item.author + "");
+        helper.setText(R.id.tvBookAuthor, item.getAuthorName()+ "");
         //更新时间
-        helper.setText(R.id.tv_update_time, item.recentReadingTime);
+        helper.setText(R.id.tv_update_time, item.getUpdateTime());
 
     }
 }

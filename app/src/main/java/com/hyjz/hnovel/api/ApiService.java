@@ -18,14 +18,19 @@ import rx.Observable;
 public interface ApiService {
 
     /**
-     * 获取新闻列表
+     * 书架列表api/readlike/like/list/page
+     * pageNum: 1
+     * pageSize: 10
      *
      * @return
      */
 
-    @GET("/book/recommend")
-    Observable<String> getRecomend(@Query("gender") String gender);
-
+    @POST("/api/readlike/like/list/page")
+    Observable<String> getRecomend(
+            @Query("access_token") String sessionId,
+            @Query("pageNum") Integer pageNum,
+            @Query("pageSize") Integer pageSize
+    );
     //注册接口
     //@FormUrlEncoded
     @POST("/api/user/reader-register")

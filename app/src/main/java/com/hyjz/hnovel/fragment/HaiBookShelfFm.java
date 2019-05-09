@@ -3,6 +3,8 @@ package com.hyjz.hnovel.fragment;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 
@@ -12,12 +14,16 @@ import com.chaychan.uikit.refreshlayout.BGANormalRefreshViewHolder;
 import com.chaychan.uikit.refreshlayout.BGARefreshLayout;
 import com.hyjz.hnovel.R;
 import com.hyjz.hnovel.adapter.BookShelfAdapter;
+import com.hyjz.hnovel.adapter.BookTicketConsumCodeAdapter;
 import com.hyjz.hnovel.base.BaseFragment;
 import com.hyjz.hnovel.bean.BookRecommend;
 import com.hyjz.hnovel.presenter.BookShelfPresenter;
 import com.hyjz.hnovel.utils.UIUtils;
 import com.hyjz.hnovel.view.BookShelfView;
 import com.hyjz.hnovel.weight.LoadingTip;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,21 +33,21 @@ import butterknife.Bind;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HaiBookShelfFm extends BaseFragment<BookShelfPresenter> implements BookShelfView, BGARefreshLayout.BGARefreshLayoutDelegate, BaseQuickAdapter.RequestLoadMoreListener {
-    @Bind(R.id.refresh_layout)
-    BGARefreshLayout mRefreshLayout;
-
-    //    @Bind(R.id.fl_content)
-//    FrameLayout mFlContent;
-    //加载页面内嵌提示
-    @Bind(R.id.loadedTip)
-    LoadingTip loadedTip;
-    @Bind(R.id.rv_news)
-    PowerfulRecyclerView mRvNews;
-    protected BaseQuickAdapter mNewsAdapter;
+public class HaiBookShelfFm extends BaseFragment<BookShelfPresenter> implements BookShelfView{
+//    //加载页面内嵌提示
+//    @Bind(R.id.loadedTip)
+//    LoadingTip loadedTip;
+//    @Bind(R.id.rv_news)
+//    PowerfulRecyclerView mRvNews;
+    BookShelfAdapter mAdapter;
     //书架图书列表
     private List<BookRecommend> list = new ArrayList<>();
-
+    @Bind(R.id.refreshLayout)
+    SmartRefreshLayout mRefreshLayout;
+    @Bind(R.id.recyclerView)
+    RecyclerView recyclerView;
+    private int mPage = 1;
+    private static final int PAGE_SIZE = 15;
     @Override
     protected BookShelfPresenter createPresenter() {
         return new BookShelfPresenter(this);
@@ -62,74 +68,99 @@ public class HaiBookShelfFm extends BaseFragment<BookShelfPresenter> implements 
     }
 
     @Override
-    public void onShowRecommendData(List<BookRecommend> data) {
-        mRefreshLayout.endRefreshing();
-        list.clear();
-        if (data != null) {
-            list.addAll(data);
-            mNewsAdapter = new BookShelfAdapter(list);
-            mRvNews.setAdapter(mNewsAdapter);
-        }
+    public void onShowRecommendData(BookRecommend b) {
+        mRefreshLayout.setLoadmoreFinished(b.getList().size() < PAGE_SIZE);
+        mAdapter.addData(b.getList());
 
 
     }
 
     @Override
     public void onError() {
-
+        mRefreshLayout.finishRefresh();
+        mRefreshLayout.finishLoadmore();
     }
 
     @Override
     public void initView(View rootView) {
-        mRefreshLayout.setDelegate(this);
-        mRvNews.setLayoutManager(new GridLayoutManager(mActivity, 1));
-        // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
-        BGANormalRefreshViewHolder refreshViewHolder = new BGANormalRefreshViewHolder(mActivity, false);
-        // 设置下拉刷新
-        refreshViewHolder.setRefreshViewBackgroundColorRes(R.color.color_F3F5F4);//背景色
-        refreshViewHolder.setPullDownRefreshText(UIUtils.getString(R.string.refresh_pull_down_text));//下拉的提示文字
-        refreshViewHolder.setReleaseRefreshText(UIUtils.getString(R.string.refresh_release_text));//松开的提示文字
-        refreshViewHolder.setRefreshingText(UIUtils.getString(R.string.refresh_ing_text));//刷新中的提示文字
-
-
-        // 设置下拉刷新和上拉加载更多的风格
-        mRefreshLayout.setRefreshViewHolder(refreshViewHolder);
-        mRefreshLayout.shouldHandleRecyclerViewLoadingMore(mRvNews);
+        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        initRecycler();
+        loaddata();
+        initRefresh();
     }
 
+    /**
+     * time    : 2019/3/14 11:24
+     * desc    : 初始化上拉刷新, 下拉加载更多
+     * versions: 1.0
+     * 255,69,0
+     */
+    private void initRefresh() {
+
+        mRefreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                mPage++;
+                loaddata();
+            }
+
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                refresh();
+            }
+        });
+
+    }
+
+    /**
+     * time    : 2019/3/28 11:22
+     * desc    : 刷新列表
+     * versions: 1.0
+     */
+    private void refresh() {
+        mPage = 1;
+        mAdapter.getData().clear();
+        loaddata();
+    }
+
+    public void loaddata() {
+
+
+        mPresenter.getRecommed(mPage);
+
+    }
+
+    /**
+     * time    : 2019/3/14 11:24
+     * desc    : 初始化列表
+     * versions: 1.0
+     */
+    private void initRecycler() {
+        mAdapter = new BookShelfAdapter();
+        recyclerView.setAdapter(mAdapter);
+    }
     @Override
     public void initListener() {
 
     }
 
-    @Override
-    public void onLoadMoreRequested() {
-
-    }
-
-    @Override
-    public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
-//        mPresenter.getRecommed("male");
-
-    }
-
-    @Override
-    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
-        return false;
-    }
 
     @Override
     public void showLoading(String title) {
-        loadedTip.setLoadingTip(LoadingTip.LoadStatus.loading);
+//        loadedTip.setLoadingTip(LoadingTip.LoadStatus.loading);
     }
 
     @Override
     public void stopLoading() {
-        loadedTip.setLoadingTip(LoadingTip.LoadStatus.finish);
+//        loadedTip.setLoadingTip(LoadingTip.LoadStatus.finish);
+        mRefreshLayout.finishRefresh();
+        mRefreshLayout.finishLoadmore();
     }
 
     @Override
     public void showErrorTip(String msg) {
 //        irc.setLoadMoreStatus(LoadMoreFooterView.Status.ERROR);
+        mRefreshLayout.finishRefresh();
+        mRefreshLayout.finishLoadmore();
     }
 }
