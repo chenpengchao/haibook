@@ -47,6 +47,8 @@ import com.hyjz.hnovel.utils.ItemLongClickedPopWindow;
 import com.hyjz.hnovel.utils.SizeUtil;
 import com.hyjz.hnovel.weight.SlowlyProgressBar;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -59,6 +61,7 @@ import java.util.UUID;
 
 import butterknife.Bind;
 import wendu.dsbridge.DWebView;
+import wendu.dsbridge.OnReturnValue;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -143,6 +146,7 @@ public class FirstFm extends BaseFragment {
         mWebView = (DWebView) v.findViewById(R.id.webview);
         DWebView.setWebContentsDebuggingEnabled(true);
         mWebView.addJavascriptObject(new JsApi(), null);
+
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true); // 启用js
         webSettings.setBlockNetworkImage(false); // 解决图片不显示
@@ -198,6 +202,20 @@ public class FirstFm extends BaseFragment {
                 return true;
             }
         });
+//        mWebView.callHandler("bookInfo", new OnReturnValue<JSONObject>() {
+//            @Override
+//            public void onValue(JSONObject o) {
+//                if (o != null) {
+//
+////
+//                } else {
+//
+//                }
+//
+//
+//
+//            }
+//        });
 //        mWebView.setWebChromeClient(new WebChromeClient() {
 //            @Override
 //            public void onProgressChanged(WebView view, int newProgress) {
@@ -366,7 +384,7 @@ public class FirstFm extends BaseFragment {
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
 //        cookieManager.removeSessionCookie();// 移除旧的[可以省略]
-        cookieManager.setCookie(url, "access_token=" + MyApp.getInstance().getToken());
+        cookieManager.setCookie(url, "access_token=" + MyApp.getInstance().getToken()+";device=android");
 //        cookieManager.setCookie(url,"password="+getMD5Bit32(MyApp.getInstance().getPassWord()));
 
 //        for (int i = 0; i < cookies.size(); i++) {
