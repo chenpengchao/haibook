@@ -75,7 +75,9 @@
         <activity android:name=".activity.ShiftAc" />
         <activity android:name=".activity.BookTicketRechargeCode" />
         <activity android:name=".activity.BookTicketConsumListAc" />
-        <activity android:name=".activity.PaihangAc"></activity>
+        <activity android:name=".activity.PaihangAc" />
+        <activity android:name=".activity.BookDetailAc" />
+        <activity android:name=".activity.ReadAc"></activity>
     </application>
 
 </manifest>

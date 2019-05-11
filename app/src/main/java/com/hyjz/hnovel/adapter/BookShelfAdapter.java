@@ -26,11 +26,20 @@ public class BookShelfAdapter extends BaseQuickAdapter<BookRecommend.BookShelfLi
         //小说标题
         helper.setText(R.id.tvBookListTitle, item.getBookName());
         //是否在更新
-        helper.setText(R.id.tv_is_lianzai_or_over, item.getLastChapterTitle() + "");
+        if (item.isHasNew() == false) {
+            helper.setText(R.id.tv_is_lianzai_or_over, "已完结");
+        } else {
+            helper.setText(R.id.tv_is_lianzai_or_over, "连载中");
+        }
+        //阅读进度
+        helper.setText(R.id.tv_read_jindu, item.getReadingChapterOrder());
+
         //作者
         helper.setText(R.id.tvBookAuthor, item.getAuthorName()+ "");
         //更新时间
         helper.setText(R.id.tv_update_time, item.getUpdateTime());
+        //更新进度
+        helper.setText(R.id.tv_update_paragraph, item.getLastChapterTitle());
 
     }
 }

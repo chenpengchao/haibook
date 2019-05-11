@@ -1,18 +1,25 @@
 package com.hyjz.hnovel.fragment;
 
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chaychan.uikit.powerfulrecyclerview.PowerfulRecyclerView;
 import com.chaychan.uikit.refreshlayout.BGANormalRefreshViewHolder;
 import com.chaychan.uikit.refreshlayout.BGARefreshLayout;
 import com.hyjz.hnovel.R;
+import com.hyjz.hnovel.activity.BookDetailAc;
 import com.hyjz.hnovel.adapter.BookShelfAdapter;
 import com.hyjz.hnovel.adapter.BookTicketConsumCodeAdapter;
 import com.hyjz.hnovel.base.BaseFragment;
@@ -48,6 +55,9 @@ public class HaiBookShelfFm extends BaseFragment<BookShelfPresenter> implements 
     RecyclerView recyclerView;
     private int mPage = 1;
     private static final int PAGE_SIZE = 15;
+    ImageView iv_header_book_shelf;
+    //头部
+    View header;
     @Override
     protected BookShelfPresenter createPresenter() {
         return new BookShelfPresenter(this);
@@ -69,6 +79,7 @@ public class HaiBookShelfFm extends BaseFragment<BookShelfPresenter> implements 
 
     @Override
     public void onShowRecommendData(BookRecommend b) {
+
         mRefreshLayout.setLoadmoreFinished(b.getList().size() < PAGE_SIZE);
         mAdapter.addData(b.getList());
 
@@ -83,10 +94,26 @@ public class HaiBookShelfFm extends BaseFragment<BookShelfPresenter> implements 
 
     @Override
     public void initView(View rootView) {
+        header = View.inflate(mContext, R.layout.header_book_shelf, null);
+        iv_header_book_shelf = header.findViewById(R.id.iv_header_book_shelf);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+
         initRecycler();
         loaddata();
         initRefresh();
+        mAdapter.addHeaderView(header);
+        iv_header_book_shelf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+//        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+//
+//            }
+//        });
     }
 
     /**
@@ -137,7 +164,17 @@ public class HaiBookShelfFm extends BaseFragment<BookShelfPresenter> implements 
      */
     private void initRecycler() {
         mAdapter = new BookShelfAdapter();
+
         recyclerView.setAdapter(mAdapter);
+        recyclerView.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view, final int position) {
+                Intent intent = new Intent(mContext, BookDetailAc.class);
+                intent.putExtra("bookId", mAdapter.getData().get(position).getBookId());
+                startActivity(intent);
+                Toast.makeText(mContext, Integer.toString(position), Toast.LENGTH_LONG).show();
+            }
+        });
     }
     @Override
     public void initListener() {

@@ -40,6 +40,7 @@ import com.hyjz.hnovel.activity.ShowImgActivity;
 import com.hyjz.hnovel.app.MyApp;
 import com.hyjz.hnovel.base.BaseFragment;
 import com.hyjz.hnovel.base.BasePresenter;
+import com.hyjz.hnovel.constant.JsApi;
 import com.hyjz.hnovel.constant.MyWebViewClient2;
 import com.hyjz.hnovel.utils.DownPicUtil;
 import com.hyjz.hnovel.utils.ItemLongClickedPopWindow;
@@ -57,6 +58,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import butterknife.Bind;
+import wendu.dsbridge.DWebView;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -66,9 +68,11 @@ public class FirstFm extends BaseFragment {
     ImageView back;
     @Bind(R.id.title)
     TextView title;
-    private String mUrl="http://www.haishuwu.com/" ;
+
+//    private String mUrl="http://www.haishuwu.com/" ;
+    private String mUrl=" http://192.168.31.213:8085/" ;
     //    private Context mContext;
-    public static WebView mWebView;
+    public static DWebView mWebView;
     // 长按查看图片
     private ItemLongClickedPopWindow itemLongClickedPopWindow;
     // 手指触发屏幕的坐标
@@ -136,8 +140,9 @@ public class FirstFm extends BaseFragment {
                                 (ProgressBar)v. findViewById(R.id.ProgressBar)
                         );
 
-        mWebView = (WebView) v.findViewById(R.id.webview);
-
+        mWebView = (DWebView) v.findViewById(R.id.webview);
+        DWebView.setWebContentsDebuggingEnabled(true);
+        mWebView.addJavascriptObject(new JsApi(), null);
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true); // 启用js
         webSettings.setBlockNetworkImage(false); // 解决图片不显示

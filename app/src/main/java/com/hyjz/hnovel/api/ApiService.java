@@ -202,5 +202,14 @@ public interface ApiService {
     Observable<String> readvip(
             @Query("access_token") String sessionId
     );
+    /**
+     *  小说详情api/book/detail
+     */
+    @POST("api/book/detail")
+    Observable<String> bookDetail(
+            @Query("access_token") String sessionId,
+            @Query("bookId") Long  bookId
+    );
+
 }
 
