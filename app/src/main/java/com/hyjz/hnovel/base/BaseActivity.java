@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.Window;
 
 import com.chaychan.lib.SlidingLayout;
@@ -20,6 +21,7 @@ import com.hyjz.hnovel.app.AppManager;
 import com.hyjz.hnovel.baserx.RxManager;
 import com.hyjz.hnovel.listener.PermissionListener;
 import com.hyjz.hnovel.manager.ChangeModeController;
+import com.hyjz.hnovel.weight.CustomDialog;
 import com.hyjz.hnovel.weight.StatusBarCompat;
 
 import org.greenrobot.eventbus.EventBus;
@@ -49,6 +51,7 @@ public abstract class BaseActivity<T extends BasePresenter>  extends AppCompatAc
     protected Bundle savedInstanceState;
     protected StateView mStateView;
     public PermissionListener mPermissionListener;
+    private CustomDialog dialog;//进度条
 
     @Override
     public  void onCreate(@Nullable Bundle savedInstanceState) {
@@ -97,6 +100,56 @@ public abstract class BaseActivity<T extends BasePresenter>  extends AppCompatAc
         SetStatusBarColor();
 
     }
+    protected void gone(final View... views) {
+        if (views != null && views.length > 0) {
+            for (View view : views) {
+                if (view != null) {
+                    view.setVisibility(View.GONE);
+                }
+            }
+        }
+    }
+
+    protected void visible(final View... views) {
+        if (views != null && views.length > 0) {
+            for (View view : views) {
+                if (view != null) {
+                    view.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+
+    }
+
+    protected boolean isVisible(View view) {
+        return view.getVisibility() == View.VISIBLE;
+    }
+
+    // dialog
+    public CustomDialog getDialog() {
+        if (dialog == null) {
+            dialog = CustomDialog.instance(this);
+            dialog.setCancelable(true);
+        }
+        return dialog;
+    }
+
+    public void hideDialog() {
+        if (dialog != null)
+            dialog.hide();
+    }
+
+    public void showDialog() {
+        getDialog().show();
+    }
+
+    public void dismissDialog() {
+        if (dialog != null) {
+            dialog.dismiss();
+            dialog = null;
+        }
+    }
+
     /**
      * 着色状态栏（4.4以上系统有效）
      */

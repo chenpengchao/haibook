@@ -31,6 +31,7 @@ public interface ApiService {
             @Query("pageNum") Integer pageNum,
             @Query("pageSize") Integer pageSize
     );
+
     //注册接口
     //@FormUrlEncoded
     @POST("/api/user/reader-register")
@@ -124,6 +125,7 @@ public interface ApiService {
             @Query("year") Integer year,
             @Query("month") Integer month
     );
+
     /**
      * 书币消费记录/api/consume/record/list/page
      */
@@ -135,6 +137,7 @@ public interface ApiService {
             @Query("year") Integer year,
             @Query("month") Integer month
     );
+
     /**
      * 进入钱包页面接口
      * /api/user/mywallet
@@ -143,6 +146,7 @@ public interface ApiService {
     Observable<String> myWallet(
             @Query("access_token") String sessionId
     );
+
     /**
      * 钱包收益排行
      * /api/user/list/rank/wallet
@@ -153,6 +157,7 @@ public interface ApiService {
             @Query("pageNum") Integer pageNum,
             @Query("pageSize") Integer pageSize
     );
+
     /**
      * 金币兑换书币页面
      * //api/exchange/bookcoin
@@ -162,6 +167,7 @@ public interface ApiService {
             @Query("access_token") String sessionId,
             @Query("exchangeType") Integer exchangeType
     );
+
     /**
      * 金币兑换书币
      * //api/exchange/bookcoin
@@ -171,6 +177,7 @@ public interface ApiService {
             @Query("access_token") String sessionId,
             @Query("bookcoin") Integer bookcoin
     );
+
     /**
      * 金币兑换余额api/exchange/money
      */
@@ -179,6 +186,7 @@ public interface ApiService {
             @Query("access_token") String sessionId,
             @Query("cash") Integer cash
     );
+
     /**
      * 提现界面api/user/withdraw
      */
@@ -195,6 +203,7 @@ public interface ApiService {
             @Query("access_token") String sessionId,
             @Query("withdrawAmount") Float withdrawAmount
     );
+
     /**
      * 成为vip页面信息api/recharge/info/readvip
      */
@@ -202,13 +211,26 @@ public interface ApiService {
     Observable<String> readvip(
             @Query("access_token") String sessionId
     );
+
     /**
-     *  小说详情api/book/detail
+     * 小说详情api/book/detail
      */
     @POST("api/book/detail")
     Observable<String> bookDetail(
             @Query("access_token") String sessionId,
-            @Query("bookId") Long  bookId
+            @Query("bookId") Long bookId
+    );
+
+    /**
+     * 小说阅读界面api/chapter/detail
+     * chapterCoin: 0
+     * chapterId: 96063
+     */
+    @POST("api/book/detail")
+    Observable<String> bookReader(
+            @Query("access_token") String sessionId,
+            @Query("chapterCoin") Integer chapterCoin,
+            @Query("chapterId") Long chapterId
     );
 
 }

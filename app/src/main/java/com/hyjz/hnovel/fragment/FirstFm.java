@@ -72,8 +72,8 @@ public class FirstFm extends BaseFragment {
     @Bind(R.id.title)
     TextView title;
 
-//    private String mUrl="http://www.haishuwu.com/" ;
-    private String mUrl=" http://192.168.31.213:8085/" ;
+    private String mUrl="http://www.haishuwu.com/" ;
+//    private String mUrl=" http://192.168.31.213:8085/" ;
     //    private Context mContext;
     public static DWebView mWebView;
     // 长按查看图片

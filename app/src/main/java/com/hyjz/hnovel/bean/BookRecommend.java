@@ -6,10 +6,11 @@ import java.util.List;
 
 public class BookRecommend {
         public static class BookShelfList{
+                private String _id;
                 private String authorName;//: "我是琦哥哥、"
                 private String bookCover;//: "http://kwayxiaoshuo.oss-cn-beijing.aliyuncs.com/d1dbb38f-3370-4221-acb9-2e095498d3ab"
-                private Long bookId;//: 1514
-                private String bookName;//: "活人禁区"
+                public Long bookId;//: 1514
+                public String bookName;//: "活人禁区"
                 private Integer bookStatus;//: 2
                 private boolean hasNew;//: false
                 private String lastChapterTitle;//: "新书《阴门诡事》来啦！"
@@ -17,7 +18,7 @@ public class BookRecommend {
                 private Integer readLikeId;//: 1388
                 private String readingChapterOrder;//: "阅读至1章"
                 private String updateTime;//: "更新于15天前"
-
+                public boolean isFromSD = false;
                 public String getAuthorName() {
                         return authorName;
                 }
@@ -104,6 +105,36 @@ public class BookRecommend {
 
                 public void setUpdateTime(String updateTime) {
                         this.updateTime = updateTime;
+                }
+
+                public boolean isFromSD() {
+                        return isFromSD;
+                }
+
+                public void setFromSD(boolean fromSD) {
+                        isFromSD = fromSD;
+                }
+
+                public String get_id() {
+                        return _id;
+                }
+
+                public void set_id(String _id) {
+                        this._id = _id;
+                }
+
+                @Override
+                public boolean equals(Object obj) {
+                        if (obj instanceof BookShelfList) {
+                                BookShelfList bean = (BookShelfList) obj;
+                                return this._id.equals(bean._id);
+                        }
+                        return super.equals(obj);
+                }
+
+                @Override
+                public int hashCode() {
+                        return this._id.hashCode();
                 }
         }
         private Integer endRow;//: 5

@@ -82,7 +82,11 @@ public class HaiBookShelfFm extends BaseFragment<BookShelfPresenter> implements 
 
         mRefreshLayout.setLoadmoreFinished(b.getList().size() < PAGE_SIZE);
         mAdapter.addData(b.getList());
-
+//        //推荐列表默认加入收藏
+//        for (BookRecommend.BookShelfList bean : b.getList()) {
+//            //TODO 此处可优化：批量加入收藏->加入前需先判断是否收藏过
+//            CollectionsManager.getInstance().add(bean);
+//        }
 
     }
 

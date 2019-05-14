@@ -1,5 +1,6 @@
 package com.hyjz.hnovel.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.hyjz.hnovel.utils.GlideUtils;
 import com.hyjz.hnovel.view.BookDetailView;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * 小说详情页面
@@ -43,10 +45,12 @@ public class BookDetailAc extends BaseActivity<BookDetailPresenter> implements B
     //书籍标签
     @Bind(R.id.tv_book_tag)
     TextView tv_book_tag;
-
+    @Bind(R.id.tv_reader)
+    TextView tv_reader;
 
 
     Long bookId;
+    Long chapterId;
     @Override
     public void initView() {
         title.setText("详情");
@@ -71,6 +75,17 @@ public class BookDetailAc extends BaseActivity<BookDetailPresenter> implements B
         return R.layout.activity_book_detail;
     }
 
+    @OnClick({R.id.tv_reader})
+    public void onclick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_reader:
+                Intent intent = new Intent(mContext, ReadAc.class);
+                intent.putExtra("bookId", bookId);
+                intent.putExtra("chapterId", chapterId);
+                startActivity(intent);
+                break;
+        }
+    }
     @Override
     public void success(BookDetailBean bean) {
         GlideUtils.load(mContext, bean.getBookInfo().getBookCover(), iv_book_cover);
@@ -80,6 +95,7 @@ public class BookDetailAc extends BaseActivity<BookDetailPresenter> implements B
         if (bean.getBookInfo().getBookStatus() == 1) {
             tv_is_end.setText("");
         }
+        chapterId = bean.getBookInfo().getLastChapterId();
 
 //        for (int i = 0; i < bean.getBookInfo().getTags().size(); i++) {
 //            if (i<)
